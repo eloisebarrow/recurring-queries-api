@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
-import QueryForm from './components/QueryForm.jsx';
 import { getQueries } from './services/api-helper.js';
+
+// components
+import QueryForm from './components/QueryForm.jsx';
+import DisplayQueries from './components/DisplayQueries.jsx';
 
 function App() {
 
@@ -20,6 +23,7 @@ function App() {
       <QueryForm
         handleSubmit={handleSubmit}  
       />
+      <DisplayQueries />
     </div>
   );
 }
