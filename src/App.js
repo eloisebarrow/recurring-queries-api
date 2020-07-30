@@ -23,7 +23,9 @@ function App() {
       <QueryForm
         handleSubmit={handleSubmit}  
       />
-      <DisplayQueries />
+      <DisplayQueries
+        queries={queries}
+      />
     </div>
   );
 }

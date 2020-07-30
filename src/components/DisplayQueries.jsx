@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function DisplayQueries(props) {
     return (
-        <div class="query-results">
+        <div className="query-results">
             <h4>Display Queries</h4>
             <tbody>
                 <tr>
@@ -10,11 +10,16 @@ export default function DisplayQueries(props) {
                     <th>Query ID</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>Test 1</td>
-                    <td>Test 2</td>
-                    <td>Test 3</td>
-                </tr>
+                { props && props.queries && props.queries.queries && props.queries.queries.map( (query, key) => {
+                    return (
+                        <tr key={key}>
+                            <td>{query.host}</td>
+                            <td>{query.query_id}</td>
+                            <td>{query.status}</td>
+                        </tr>
+                    )
+                })
+                }
             </tbody>
         </div>
     )
