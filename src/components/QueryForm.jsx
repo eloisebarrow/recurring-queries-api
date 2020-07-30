@@ -11,7 +11,7 @@ export default function QueryForm(props) {
             }}>
                 <input 
                     onChange={(e) => props.handleApiFormChange(e)}
-                    value={props.apiForm.apiKey}
+                    value={props.apiForm.host}
                     type="text" 
                     placeholder="Host"
                     name="host" 
