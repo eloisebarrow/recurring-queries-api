@@ -7,7 +7,6 @@ const api = axios.create({
 export const getQueries = async (host, apiKey) => {
     try {
         const resp = await api.get(`/?host=${host}&apikey=${apiKey}`)
-        console.log('RESP FROM API-HELPER', resp.data)
         return resp.data;
     } catch (e) {
         return { error: e.message }

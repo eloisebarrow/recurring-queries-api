@@ -18,6 +18,8 @@ export default class App extends Component {
     }
   }
 
+  // on clicking submit button, send host + apiKey from form to the recurring queries API
+  // set results to queries array in state
   handleSubmit = async () => {
     const { host, apiKey } = this.state.apiForm;
     const allQueries = await getQueries(host, apiKey);
@@ -26,6 +28,7 @@ export default class App extends Component {
     })
   }
 
+  // grab values from QueryForm and use them to set state
   handleApiFormChange = (e) => {
     const { name, value } = e.target;
     this.setState( prevState => ({
