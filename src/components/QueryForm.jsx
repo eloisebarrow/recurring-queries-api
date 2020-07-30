@@ -9,8 +9,20 @@ export default function QueryForm(props) {
                 props.handleSubmit()
 
             }}>
-                <input type="text" placeholder="Domain"></input>
-                <input type="text" placeholder="API key"></input>
+                <input 
+                    onChange={(e) => props.handleApiFormChange(e)}
+                    value={props.apiForm.apiKey}
+                    type="text" 
+                    placeholder="Host"
+                    name="host" 
+                />
+                <input 
+                    onChange={(e) => props.handleApiFormChange(e)}
+                    value={props.apiForm.apiKey}
+                    type="text" 
+                    placeholder="API key" 
+                    name="apiKey"
+                />
                 <input type="submit"></input>
             </form>
         </div>

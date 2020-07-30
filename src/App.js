@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react'
 import './App.css';
 import { getQueries } from './services/api-helper.js';
 
@@ -6,28 +6,52 @@ import { getQueries } from './services/api-helper.js';
 import QueryForm from './components/QueryForm.jsx';
 import DisplayQueries from './components/DisplayQueries.jsx';
 
-function App() {
-
-  const [ queries, setQueries ] = React.useState([])
-
-  const handleSubmit = async () => {
-    const allQueries = await getQueries();
-    setQueries(allQueries);
-    // console.log(queries)
+export default class App extends Component {
+  constructor(props) {
+  super(props)
+    this.state = {
+      queries: [],
+      apiForm: {
+        host: null,
+        apiKey: null
+      }
+    }
   }
 
-  return (
-    <div className="App">
-      <h1>Recurring Queries</h1>
-      <h3>Manage your recurring queries below</h3>
-      <QueryForm
-        handleSubmit={handleSubmit}  
-      />
-      <DisplayQueries
-        queries={queries}
-      />
-    </div>
-  );
+  handleSubmit = async () => {
+    const allQueries = await getQueries();
+    this.setState({
+      queries: allQueries
+    })
+  }
+
+  handleApiFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState( prevState => ({
+      apiForm: {
+        ...prevState.apiForm,
+        [name]: value
+      }
+    }))
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Recurring Queries</h1>
+        <h3>Manage your recurring queries below</h3>
+        <QueryForm
+          handleSubmit={this.handleSubmit}  
+          handleApiFormChange={this.handleApiFormChange}
+          apiForm={this.state.apiForm}
+          // host={this.state.apiForm.host}
+          // apiKey={this.state.apiForm.apiKey}
+        />
+        <DisplayQueries
+          queries={this.state.queries}
+        />
+      </div>
+    );
+  }
 }
 
-export default App;
