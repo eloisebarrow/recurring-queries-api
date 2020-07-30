@@ -19,7 +19,8 @@ export default class App extends Component {
   }
 
   handleSubmit = async () => {
-    const allQueries = await getQueries(this.state.apiForm.host, this.state.apiForm.apiKey);
+    const { host, apiKey } = this.state.apiForm;
+    const allQueries = await getQueries(host, apiKey);
     this.setState({
       queries: allQueries
     })
@@ -29,10 +30,10 @@ export default class App extends Component {
     const { name, value } = e.target;
     this.setState( prevState => ({
       apiForm: {
-        // ...prevState.apiForm,
+        ...prevState.apiForm,
         [name]: value
       }
-    }), () => {console.log('name:', name, 'value', value)})
+    }))
   }
 
   render() {
