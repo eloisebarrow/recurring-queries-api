@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css';
-import { getQueries } from './services/api-helper.js';
+import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
 // components
 import QueryForm from './components/QueryForm.jsx';
@@ -18,6 +18,17 @@ export default class App extends Component {
     }
   }
 
+  // grab values from QueryForm and use them to set state
+  handleApiFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState( prevState => ({
+      apiForm: {
+        ...prevState.apiForm,
+        [name]: value
+      }
+    }))
+  }
+
   // on clicking submit button, send host + apiKey from form to the recurring queries API
   // set results to queries array in state
   handleSubmit = async () => {
@@ -28,15 +39,9 @@ export default class App extends Component {
     })
   }
 
-  // grab values from QueryForm and use them to set state
-  handleApiFormChange = (e) => {
-    const { name, value } = e.target;
-    this.setState( prevState => ({
-      apiForm: {
-        ...prevState.apiForm,
-        [name]: value
-      }
-    }))
+  handleDeleteQuery = async (queryId) => {
+    const { host, apiKey } = this.state.apiForm;
+    getCancelRecurringQueries(host, apiKey, queryId);
   }
 
   render() {
@@ -51,6 +56,7 @@ export default class App extends Component {
         />
         <DisplayQueries
           queries={this.state.queries}
+          handleDeleteQuery={this.handleDeleteQuery}
         />
       </div>
     );

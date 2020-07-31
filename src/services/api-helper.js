@@ -19,9 +19,8 @@ export const getQueries = async (host, apiKey) => {
 
 export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
     try {
-        const resp = await apiCancel.get(`/?apikey=${apiKey}&host=${host}&query_id=${queryId}`)
-        return resp.data;
+        await apiCancel.get(`/?apikey=${apiKey}&host=${host}&query_id=${queryId}`)
     } catch (e) {
-        return { error: e.message }
+        return e.message
     }
 }
