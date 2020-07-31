@@ -36,12 +36,15 @@ export default class App extends Component {
     const allQueries = await getQueries(host, apiKey);
     this.setState({
       queries: allQueries
-    })
+    }, () => {console.log(this.state.queries)})
   }
 
   handleDeleteQuery = async (queryId) => {
     const { host, apiKey } = this.state.apiForm;
     getCancelRecurringQueries(host, apiKey, queryId);
+    this.setState(prevState => ({
+      queries: prevState.queries.queries.filter((query) => query.query_id !== queryId)
+    }), () => {console.log('queries after deletion', this.state.queries)})
   }
 
   render() {
