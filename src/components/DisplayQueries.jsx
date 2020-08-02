@@ -9,7 +9,7 @@ export default function DisplayQueries(props) {
                     <th>Host</th>
                     <th>Query ID</th>
                     <th>Status</th>
-                    <th>Delete?</th>
+                    <th>Cancel?</th>
                 </tr>
                 { props && props.queries && props.queries.queries && props.queries.queries.map( (query, key) => {
                     return (
@@ -17,7 +17,7 @@ export default function DisplayQueries(props) {
                             <td>{query.host}</td>
                             <td>{query.query_id}</td>
                             <td>{query.status}</td>
-                            <td><button onClick={() => props.handleDeleteQuery(query.query_id)}>Delete</button></td>
+                            <td><button onClick={() => props.handleCancelQuery(query.query_id)}>Cancel</button></td>
                         </tr>
                     )
                 })

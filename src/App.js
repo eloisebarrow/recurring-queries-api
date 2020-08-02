@@ -39,7 +39,7 @@ export default class App extends Component {
     }, () => {console.log(this.state.queries)})
   }
 
-  handleDeleteQuery = async (queryId) => {
+  handleCancelQuery = async (queryId) => {
     const { host, apiKey } = this.state.apiForm;
     getCancelRecurringQueries(host, apiKey, queryId);
     this.setState(prevState => ({
@@ -59,7 +59,7 @@ export default class App extends Component {
         />
         <DisplayQueries
           queries={this.state.queries}
-          handleDeleteQuery={this.handleDeleteQuery}
+          handleCancelQuery={this.handleCancelQuery}
         />
       </div>
     );
