@@ -13,7 +13,7 @@ export const getQueries = async (host, apiKey) => {
         const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}`)
         return resp.data;
     } catch (e) {
-        return { error: e.message }
+        return e.message
     }
 }
 

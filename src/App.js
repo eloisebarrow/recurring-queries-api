@@ -12,8 +12,8 @@ export default class App extends Component {
     this.state = {
       queries: [],
       apiForm: {
-        host: null,
-        apiKey: null
+        host: '',
+        apiKey: ''
       }
     }
   }
