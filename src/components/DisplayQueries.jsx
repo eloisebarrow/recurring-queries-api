@@ -112,9 +112,17 @@ function Row(props) {
                       <TableCell component="th" scope="row">
                         {row.date_range}
                       </TableCell>
-                      <TableCell>{row.metrics}</TableCell>
-                      <TableCell align="right">{row.dimensions}</TableCell>
-                      <TableCell align="right">{row.filters}</TableCell>
+                      <TableCell>
+                        {row.metrics.map((metric, i) => { return `${metric},` })}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.dimensions ? row.dimensions.map((dimension, i) => { return `${dimension}, ` })
+                          : 'none'}
+                      </TableCell>
+                      <TableCell align="right">
+                        {typeof(row.filters) == Array ? row.filters.map((filter, i) => { return `${filter}, ` })
+                          : 'none'}
+                      </TableCell>
                     </TableRow>
     
                 </TableBody>
@@ -174,12 +182,6 @@ export default function CollapsibleTable(props) {
           ))} */}
           { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
               return (
-                  // <tr key={key}>
-                  //     <td>{query.host}</td>
-                  //     <td>{query.query_id}</td>
-                  //     <td>{query.status}</td>
-                  //     <td><button onClick={() => props.handleCancelQuery(query.query_id)}>Cancel</button></td>
-                  // </tr>
                   <Row key={i} row={query} />
               )
             })
