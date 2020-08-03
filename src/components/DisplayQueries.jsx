@@ -54,22 +54,21 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(host, queryId, status, submissionTs, expirationTs) {
-  return {
-    host,
-    queryId,
-    status,
-    submissionTs,
-    expirationTs,
-    metadata: [
-      { date_range: '2020-01-05', metrics: '11091700', dimensions: 3, filters: 'placeholder' },
-      { date_range: '2020-01-02', metrics: 'Anonymous', dimensions: 1, filters: 'placeholder' },
-    ],
-  };
-}
+// function createData(host, queryId, status, submissionTs, expirationTs) {
+//   return {
+//     host,
+//     queryId,
+//     status,
+//     submissionTs,
+//     expirationTs,
+//     metadata: [
+//       { date_range: '2020-01-05', metrics: '11091700', dimensions: 3, filters: 'placeholder' },
+//       { date_range: '2020-01-02', metrics: 'Anonymous', dimensions: 1, filters: 'placeholder' },
+//     ],
+//   };
+// }
 
 function Row(props) {
-  console.log('row props:', props)
   const { row } = props; // each row exists in props, with all its data
   const [open, setOpen] = React.useState(false); // expand row to see more data
   const classes = useRowStyles();
@@ -100,14 +99,13 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date range</TableCell>
-                    <TableCell>Metrics</TableCell>
-                    <TableCell align="right">Dimensions</TableCell>
-                    <TableCell align="right">Filters</TableCell>
+                    <TableCell className="category">Date range</TableCell>
+                    <TableCell className="category">Metrics</TableCell>
+                    <TableCell className="category" align="right">Dimensions</TableCell>
+                    <TableCell className="category" align="right">Filters</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {row.metadata.map((metadataRow, i) => ( */}
                     <TableRow>
                       <TableCell component="th" scope="row">
                         {row.date_range}
@@ -120,8 +118,14 @@ function Row(props) {
                           : 'none'}
                       </TableCell>
                       <TableCell align="right">
-                        {typeof(row.filters) == Array ? row.filters.map((filter, i) => { return `${filter}, ` })
-                          : 'none'}
+                        { Object.keys(row.filters).length > 0 ? 
+                          // for (let i = 0; i < Object.keys(row.filters).length; i++) {
+                            row.filters.distribution.map((filter, i) => { 
+                              console.log('filter array:', filter)
+                              return `${filter}, ` })
+                          // }
+                          : 'none'
+                        }
                       </TableCell>
                     </TableRow>
     
@@ -134,52 +138,26 @@ function Row(props) {
     </React.Fragment>
   );
 }
-
-// Row.propTypes = {
-//   row: PropTypes.shape({
-//     calories: PropTypes.number.isRequired,
-//     carbs: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     history: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         amount: PropTypes.number.isRequired,
-//         customerId: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//       }),
-//     ).isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     protein: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
-
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-//   createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-//   createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-// ];
+// get # of keys in filters object
+// loop that many times
+// on each loop 
+// map thru the key's values and return each one
 
 export default function CollapsibleTable(props) {
-  console.log('collapsibleTable props:', props)
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Host</TableCell> {/* was Dessert */}
-            <TableCell align="right">Query ID</TableCell> {/* was Calories */}
-            <TableCell align="right">Status</TableCell> {/* was Fat */}
-            <TableCell align="right">Submission TS</TableCell> {/* was Carbs */}
-            <TableCell align="right">Expiration TS</TableCell> {/* was Protein */}
+            <TableCell className="category" >Host</TableCell>
+            <TableCell className="category" align="right">Query ID</TableCell>
+            <TableCell className="category" align="right">Status</TableCell> 
+            <TableCell className="category" align="right">Submission TS</TableCell> 
+            <TableCell className="category" align="right">Expiration TS</TableCell> 
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))} */}
           { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
               return (
                   <Row key={i} row={query} />

@@ -17,7 +17,7 @@
   color: #61dafb;
 }
 
-tbody, tr, th, td {
+/* tbody, tr, th, td {
   border: 1px solid black;
 }
 
@@ -35,4 +35,8 @@ tr, th, td {
 
 th {
   width: 300px;
+} */
+
+.category {
+  font-weight: 600;
 }

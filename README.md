@@ -15,4 +15,4 @@ Run ```npm start``` from the root folder
 
 ```Uncaught Error: Objects are not valid as a React child (found: object with keys {}). If you meant to render a collection of children, use an array instead.```
 
-Solution: TBD
+Solution: row.filters is an object but I was attempting to map through it. Change logic to access each key and map through those instead.
