@@ -99,10 +99,10 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell className="category">Date range</TableCell>
-                    <TableCell className="category">Metrics</TableCell>
-                    <TableCell className="category" align="right">Dimensions</TableCell>
-                    <TableCell className="category" align="right">Filters</TableCell>
+                    <TableCell>Date range</TableCell>
+                    <TableCell>Metrics</TableCell>
+                    <TableCell align="right">Dimensions</TableCell>
+                    <TableCell align="right">Filters</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -114,21 +114,18 @@ function Row(props) {
                         {row.metrics.map((metric, i) => { return `${metric},` })}
                       </TableCell>
                       <TableCell align="right">
-                        {row.dimensions ? row.dimensions.map((dimension, i) => { return `${dimension}, ` })
+                        {row.dimensions ? row.dimensions.map(dimension => { return `${dimension}, ` })
                           : 'none'}
                       </TableCell>
                       <TableCell align="right">
                         { Object.keys(row.filters).length > 0 ? 
-                          // for (let i = 0; i < Object.keys(row.filters).length; i++) {
-                            row.filters.distribution.map((filter, i) => { 
-                              console.log('filter array:', filter)
-                              return `${filter}, ` })
-                          // }
+                            Object.keys(row.filters).map(filterKey => {
+                              return `${filterKey} = ${row.filters[filterKey]}, `
+                            })
                           : 'none'
                         }
                       </TableCell>
                     </TableRow>
-    
                 </TableBody>
               </Table>
             </Box>
@@ -138,10 +135,6 @@ function Row(props) {
     </React.Fragment>
   );
 }
-// get # of keys in filters object
-// loop that many times
-// on each loop 
-// map thru the key's values and return each one
 
 export default function CollapsibleTable(props) {
   return (
@@ -150,11 +143,11 @@ export default function CollapsibleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell className="category" >Host</TableCell>
-            <TableCell className="category" align="right">Query ID</TableCell>
-            <TableCell className="category" align="right">Status</TableCell> 
-            <TableCell className="category" align="right">Submission TS</TableCell> 
-            <TableCell className="category" align="right">Expiration TS</TableCell> 
+            <TableCell>Host</TableCell>
+            <TableCell align="right">Query ID</TableCell>
+            <TableCell align="right">Status</TableCell> 
+            <TableCell align="right">Submission TS</TableCell> 
+            <TableCell align="right">Expiration TS</TableCell> 
           </TableRow>
         </TableHead>
         <TableBody>

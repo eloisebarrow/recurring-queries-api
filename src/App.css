@@ -16,27 +16,3 @@
 .App-link {
   color: #61dafb;
 }
-
-/* tbody, tr, th, td {
-  border: 1px solid black;
-}
-
-tr, th, td {
-  padding: 25px;
-}
-
-.query-results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 900px;
-  margin: 0 auto;
-}
-
-th {
-  width: 300px;
-} */
-
-.category {
-  font-weight: 600;
-}
