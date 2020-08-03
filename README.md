@@ -23,3 +23,4 @@ Solution: row.filters is an object but I was attempting to map through it. Chang
 - add Cancel button to CollapsibleTable
 - remove trailing comma from metadata
 - determine secure way to submit API key
+- change timestamp formatting from unix 
