@@ -47,7 +47,8 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 // import { getUnixTs } from '../services/api-helper';
 
-const moment = require('moment'); // moment library to convert unix timestamps
+// const moment = require('moment'); // moment library to convert unix timestamps
+import moment from 'moment';
 
 const useRowStyles = makeStyles({
   root: {
@@ -58,8 +59,7 @@ const useRowStyles = makeStyles({
 });
 
 const convertTs = (ts) => {
-  let timestamp = moment.unix(ts)
-  console.log(timestamp)
+  let timestamp = moment.unix(ts).utc()
   return timestamp._d;
 }
 
