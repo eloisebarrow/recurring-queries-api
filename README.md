@@ -18,6 +18,12 @@ Run ```npm start``` from the root folder
 
 Solution: row.filters is an object but I was attempting to map through it. Change logic to access each key and map through those instead.
 
+- Returning ```timestamp._d``` from moment.js's moment.unix() function threw the following error:
+
+```Error: Objects are not valid as a React child (found: Fri Jul 31 2020 23:22:40 GMT-0400 (Eastern Daylight Time)). If you meant to render a collection of children, use an array instead.```
+
+Solution: TBD
+
 ## To Do
 
 - add CB fonts
