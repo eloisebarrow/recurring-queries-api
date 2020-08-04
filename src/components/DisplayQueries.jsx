@@ -45,7 +45,9 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { getUnixTs } from '../services/api-helper';
+// import { getUnixTs } from '../services/api-helper';
+
+const moment = require('moment'); // moment library to convert unix timestamps
 
 const useRowStyles = makeStyles({
   root: {
@@ -54,6 +56,12 @@ const useRowStyles = makeStyles({
     },
   },
 });
+
+const convertTs = (ts) => {
+  let timestamp = moment.unix(ts)
+  console.log(timestamp)
+  return timestamp._d;
+}
 
 function Row(props) {
   const { row } = props; // each row exists in props, with all its data
@@ -73,7 +81,7 @@ function Row(props) {
         </TableCell>
         <TableCell align="right">{row.query_id}</TableCell>
         <TableCell align="right">{row.status}</TableCell>
-        <TableCell align="right">{row.query_submission_ts}</TableCell>
+        <TableCell align="right">{convertTs(row.query_submission_ts)}</TableCell>
         <TableCell align="right">{row.expiration_ts}</TableCell>
       </TableRow>
       <TableRow>
