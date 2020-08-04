@@ -30,7 +30,7 @@
 //////////// MATERIAL UI TABLE /////////////////////////
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -45,6 +45,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { getUnixTs } from '../services/api-helper';
 
 const useRowStyles = makeStyles({
   root: {
@@ -53,20 +54,6 @@ const useRowStyles = makeStyles({
     },
   },
 });
-
-// function createData(host, queryId, status, submissionTs, expirationTs) {
-//   return {
-//     host,
-//     queryId,
-//     status,
-//     submissionTs,
-//     expirationTs,
-//     metadata: [
-//       { date_range: '2020-01-05', metrics: '11091700', dimensions: 3, filters: 'placeholder' },
-//       { date_range: '2020-01-02', metrics: 'Anonymous', dimensions: 1, filters: 'placeholder' },
-//     ],
-//   };
-// }
 
 function Row(props) {
   const { row } = props; // each row exists in props, with all its data
@@ -138,7 +125,7 @@ function Row(props) {
 
 export default function CollapsibleTable(props) {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="query-results">
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
