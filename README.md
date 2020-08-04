@@ -25,3 +25,4 @@ Solution: row.filters is an object but I was attempting to map through it. Chang
 - remove trailing comma from metadata
 - determine secure way to submit API key
 - change timestamp formatting from unix 
+- handle API errors - display & explain
