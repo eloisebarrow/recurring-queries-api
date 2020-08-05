@@ -12,8 +12,8 @@ Run ```npm start``` from the root folder
 
 ## To Do
 
+- Determine how to display a query that has been cancelled but persists in the recurring queries list
 - add CB fonts
-- add Cancel button to CollapsibleTable
 - remove trailing comma from metadata
 - determine secure way to submit API key
 - handle API errors - display & explain
@@ -21,6 +21,7 @@ Run ```npm start``` from the root folder
 ## Completed Tasks
 
 - change timestamp formatting from unix
+- add Cancel button to CollapsibleTable
 
 ## Errors
 
