@@ -10,6 +10,18 @@
 
 Run ```npm start``` from the root folder
 
+## To Do
+
+- add CB fonts
+- add Cancel button to CollapsibleTable
+- remove trailing comma from metadata
+- determine secure way to submit API key
+- handle API errors - display & explain
+
+## Completed Tasks
+
+- change timestamp formatting from unix
+
 ## Errors
 
 - While refactoring CollapsibleTable component, clicking to expand the 'History'/'Additional Metadata' section displayed a blank screen and threw:
@@ -23,12 +35,3 @@ Solution: row.filters is an object but I was attempting to map through it. Chang
 ```Error: Objects are not valid as a React child (found: Fri Jul 31 2020 23:22:40 GMT-0400 (Eastern Daylight Time)). If you meant to render a collection of children, use an array instead.```
 
 Solution: Had to convert the value to a string.
-
-## To Do
-
-- add CB fonts
-- add Cancel button to CollapsibleTable
-- remove trailing comma from metadata
-- determine secure way to submit API key
-- change timestamp formatting from unix 
-- handle API errors - display & explain
