@@ -22,7 +22,7 @@ Solution: row.filters is an object but I was attempting to map through it. Chang
 
 ```Error: Objects are not valid as a React child (found: Fri Jul 31 2020 23:22:40 GMT-0400 (Eastern Daylight Time)). If you meant to render a collection of children, use an array instead.```
 
-Solution: TBD
+Solution: Had to convert the value to a string.
 
 ## To Do
 
