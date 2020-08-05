@@ -16,7 +16,8 @@ Run ```npm start``` from the root folder
 - add CB fonts
 - remove trailing comma from metadata
 - determine secure way to submit API key
-- handle API errors - display & explain
+- handle API errors - general handling DONE, wip clear table of previous submission results
+- add message for form submissions that have no results
 
 ## Completed Tasks
 
