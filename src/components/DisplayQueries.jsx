@@ -1,35 +1,9 @@
-// import React from 'react'
-
-// export default function DisplayQueries(props) {
-//     return (
-//         <div className="query-results">
-//             <h4>Display Queries</h4>
-//             <tbody>
-//                 <tr>
-//                     <th>Host</th>
-//                     <th>Query ID</th>
-//                     <th>Status</th>
-//                     <th>Cancel?</th>
-//                 </tr>
-//                 { props && props.queries && props.queries.queries && props.queries.queries.map( (query, key) => {
-//                     return (
-//                         <tr key={key}>
-//                             <td>{query.host}</td>
-//                             <td>{query.query_id}</td>
-//                             <td>{query.status}</td>
-//                             <td><button onClick={() => props.handleCancelQuery(query.query_id)}>Cancel</button></td>
-//                         </tr>
-//                     )
-//                 })
-//                 }
-//             </tbody>
-//         </div>
-//     )
-// }
-
-//////////// MATERIAL UI TABLE /////////////////////////
-
 import React from 'react';
+
+// Moment.js
+import moment from 'moment';
+
+// Material UI 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -44,7 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import moment from 'moment';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 
 const useRowStyles = makeStyles({
   root: {
@@ -72,6 +46,11 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
+        <TableCell>
+          <IconButton onClick={() => props.handleCancelQuery(row.query_id)}>
+            <DeleteOutlineOutlinedIcon />
+          </IconButton>
+        </TableCell>
         <TableCell component="th" scope="row">
           {row.host}
         </TableCell>
@@ -81,6 +60,8 @@ function Row(props) {
         <TableCell align="right">{ convertTs(row.expiration_ts) }</TableCell>
       </TableRow>
       <TableRow>
+        <TableCell />
+        <TableCell />
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
@@ -134,6 +115,7 @@ export default function CollapsibleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell />
+            <TableCell />
             <TableCell>Host</TableCell>
             <TableCell align="right">Query ID</TableCell>
             <TableCell align="right">Status</TableCell> 
@@ -144,7 +126,7 @@ export default function CollapsibleTable(props) {
         <TableBody>
           { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
               return (
-                  <Row key={i} row={query} />
+                  <Row key={i} row={query} handleCancelQuery={props.handleCancelQuery} />
               )
             })
           }
