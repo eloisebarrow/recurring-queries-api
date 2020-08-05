@@ -13,7 +13,7 @@ export const getQueries = async (host, apiKey) => {
         const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}`)
         return resp.data;
     } catch (e) {
-        return e.message
+        return { error: e.message }
     }
 }
 
@@ -21,6 +21,6 @@ export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
     try {
         await apiCancel.get(`/?apikey=${apiKey}&host=${host}&query_id=${queryId}`)
     } catch (e) {
-        return e.message
+        return { error: e.message }
     }
 }
