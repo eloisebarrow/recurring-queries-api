@@ -47,9 +47,9 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell>
-          <IconButton onClick={() => props.handleCancelQuery(row.query_id)}>
+          {/* <IconButton onClick={() => props.handleCancelQuery(row.query_id)}>
             <DeleteOutlineOutlinedIcon />
-          </IconButton>
+          </IconButton> */}
         </TableCell>
         <TableCell component="th" scope="row">
           {row.host}
