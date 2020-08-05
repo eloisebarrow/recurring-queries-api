@@ -14,7 +14,8 @@ export default class App extends Component {
       apiForm: {
         host: '',
         apiKey: ''
-      }
+      },
+      error: ''
     }
   }
 
@@ -29,14 +30,31 @@ export default class App extends Component {
     }))
   }
 
+  handleGetQueriesError = () => {
+    this.setState({
+      error: "Uh oh... you may have a typo in your host or API key. Try again."
+    })
+  }
+
+  clearError = () => {
+    this.setState({
+      error: ''
+    })
+  }
+
   // on clicking submit button, send host + apiKey from form to the recurring queries API
   // set results to queries array in state
   handleSubmit = async () => {
     const { host, apiKey } = this.state.apiForm;
     const allQueries = await getQueries(host, apiKey);
-    this.setState({
-      queries: allQueries
-    })
+    if (allQueries.error) {
+      this.handleGetQueriesError();
+    } else {
+      this.clearError();
+      this.setState({
+        queries: allQueries
+      })
+    }
   }
 
   handleCancelQuery = async (queryId) => {
@@ -56,6 +74,7 @@ export default class App extends Component {
           handleSubmit={this.handleSubmit}  
           handleApiFormChange={this.handleApiFormChange}
           apiForm={this.state.apiForm}
+          error={this.state.error}
         />
         <DisplayQueries
           queries={this.state.queries}

@@ -1,8 +1,9 @@
 import React from 'react'
+import '../App.css'
 
 export default function QueryForm(props) {
     return (
-        <div>
+        <div className="query-form">
             <h4>Enter the domain and API key</h4>
             <form onSubmit={(e) => {
                 e.preventDefault()
@@ -25,6 +26,7 @@ export default function QueryForm(props) {
                 />
                 <input type="submit"></input>
             </form>
+            <p className="error">{props.error}</p>
         </div>
     )
 }

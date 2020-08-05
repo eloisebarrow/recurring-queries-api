@@ -6,3 +6,11 @@
   max-width: 1200px;
   margin: 24px auto;
 }
+
+.query-form {
+  height: 88px;
+}
+
+.error {
+  color: rgb(255,0,0);
+}
