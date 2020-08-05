@@ -12,11 +12,12 @@ Run ```npm start``` from the root folder
 
 ## To Do
 
-- Determine how to display a query that has been cancelled but persists in the recurring queries list
+- add user_id field (either optional input or column in table + search filter)
+- Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
 - add CB fonts
 - remove trailing comma from metadata
 - determine secure way to submit API key
-- handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 503s indicate no queries exist that match the host/key combo; 403s indicate invalid host/key submission)
+- handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 403s indicate invalid host/key submission)
 - add message for form submissions that have no results
 
 ## Completed Tasks
