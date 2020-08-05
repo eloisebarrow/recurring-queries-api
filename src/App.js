@@ -36,7 +36,7 @@ export default class App extends Component {
     const allQueries = await getQueries(host, apiKey);
     this.setState({
       queries: allQueries
-    }, () => {console.log(this.state.queries)})
+    })
   }
 
   handleCancelQuery = async (queryId) => {

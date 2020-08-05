@@ -30,7 +30,6 @@
 //////////// MATERIAL UI TABLE /////////////////////////
 
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -45,9 +44,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-// import { getUnixTs } from '../services/api-helper';
-
-const moment = require('moment'); // moment library to convert unix timestamps
+import moment from 'moment';
 
 const useRowStyles = makeStyles({
   root: {
@@ -58,9 +55,8 @@ const useRowStyles = makeStyles({
 });
 
 const convertTs = (ts) => {
-  let timestamp = moment.unix(ts)
-  console.log(timestamp)
-  return timestamp._d;
+  let timestamp = moment.unix(ts).utc();
+  return timestamp._d.toString();
 }
 
 function Row(props) {
@@ -81,8 +77,8 @@ function Row(props) {
         </TableCell>
         <TableCell align="right">{row.query_id}</TableCell>
         <TableCell align="right">{row.status}</TableCell>
-        <TableCell align="right">{row.query_submission_ts}</TableCell>
-        <TableCell align="right">{row.expiration_ts}</TableCell>
+        <TableCell align="right">{ convertTs(row.query_submission_ts) }</TableCell>
+        <TableCell align="right">{ convertTs(row.expiration_ts) }</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -106,11 +102,11 @@ function Row(props) {
                         {row.date_range}
                       </TableCell>
                       <TableCell>
-                        {row.metrics.map((metric, i) => { return `${metric},` })}
+                        { row.metrics.map((metric, i) => { return `${metric},` }) }
                       </TableCell>
                       <TableCell align="right">
-                        {row.dimensions ? row.dimensions.map(dimension => { return `${dimension}, ` })
-                          : 'none'}
+                        { row.dimensions ? row.dimensions.map(dimension => { return `${dimension}, ` })
+                          : 'none' }
                       </TableCell>
                       <TableCell align="right">
                         { Object.keys(row.filters).length > 0 ? 
@@ -141,8 +137,8 @@ export default function CollapsibleTable(props) {
             <TableCell>Host</TableCell>
             <TableCell align="right">Query ID</TableCell>
             <TableCell align="right">Status</TableCell> 
-            <TableCell align="right">Submission TS</TableCell> 
-            <TableCell align="right">Expiration TS</TableCell> 
+            <TableCell align="right">Submission Timestamp (UTC)</TableCell> 
+            <TableCell align="right">Expiration Timestamp (UTC)</TableCell> 
           </TableRow>
         </TableHead>
         <TableBody>
@@ -157,4 +153,3 @@ export default function CollapsibleTable(props) {
     </TableContainer>
   );
 }
-

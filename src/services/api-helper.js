@@ -8,10 +8,6 @@ const apiCancel = axios.create({
     baseURL: `https://chartbeat.com/query/v2/recurring/cancel`
 })
 
-const apiUnixConverter = axios.create({
-    baseURL: `https://showcase.api.linx.twenty57.net/UnixTime/fromunix?timestamp=`
-})
-
 export const getQueries = async (host, apiKey) => {
     try {
         const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}`)
@@ -24,15 +20,6 @@ export const getQueries = async (host, apiKey) => {
 export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
     try {
         await apiCancel.get(`/?apikey=${apiKey}&host=${host}&query_id=${queryId}`)
-    } catch (e) {
-        return e.message
-    }
-}
-
-export const getUnixTs = async (ts) => {
-    try {
-        const convertedTs = await apiUnixConverter.get(`${ts}`)
-        return convertedTs.data;
     } catch (e) {
         return e.message
     }
