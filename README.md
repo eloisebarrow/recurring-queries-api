@@ -16,7 +16,7 @@ Run ```npm start``` from the root folder
 - add CB fonts
 - remove trailing comma from metadata
 - determine secure way to submit API key
-- handle API errors - general handling DONE, wip clear table of previous submission results
+- handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 503s indicate no queries exist that match the host/key combo; 403s indicate invalid host/key submission)
 - add message for form submissions that have no results
 
 ## Completed Tasks
