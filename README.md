@@ -36,3 +36,9 @@ Solution: row.filters is an object but I was attempting to map through it. Chang
 ```Error: Objects are not valid as a React child (found: Fri Jul 31 2020 23:22:40 GMT-0400 (Eastern Daylight Time)). If you meant to render a collection of children, use an array instead.```
 
 Solution: Had to convert the value to a string.
+
+- On clicking to expand any row, this error is thrown:
+
+```Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://fb.me/react-strict-mode-find-node```
+
+Solution: TBD
