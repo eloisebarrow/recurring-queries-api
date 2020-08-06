@@ -8,9 +8,10 @@
 }
 
 .query-form {
-  height: 88px;
+  height: 120px;
 }
 
 .error {
   color: rgb(255,0,0);
+  margin: 24px;
 }

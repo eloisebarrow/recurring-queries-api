@@ -13,17 +13,17 @@ Run ```npm start``` from the root folder
 ## To Do
 
 - add user_id field (either optional input or column in table + search filter)
+- handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 403s indicate invalid host/key submission)
+- add message for form submissions that have no results (empty array returned from API)
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
 - add CB fonts
 - remove trailing comma from metadata
 - determine secure way to submit API key
-- handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 403s indicate invalid host/key submission)
-- add message for form submissions that have no results
 
 ## Completed Tasks
 
 - change timestamp formatting from unix
-- add Cancel button to CollapsibleTable
+- add Cancel button to CollapsibleTable (currently commented out)
 
 ## Errors
 
@@ -31,7 +31,7 @@ Run ```npm start``` from the root folder
 
 ```Uncaught Error: Objects are not valid as a React child (found: object with keys {}). If you meant to render a collection of children, use an array instead.```
 
-Solution: row.filters is an object but I was attempting to map through it. Change logic to access each key and map through those instead.
+Solution: row.filters is an object but I was attempting to map through it. Changed logic to access each key and map through those instead.
 
 - Returning ```timestamp._d``` from moment.js's moment.unix() function threw the following error:
 

@@ -53,7 +53,7 @@ export default class App extends Component {
       this.clearError();
       this.setState({
         queries: allQueries
-      })
+      }, () => console.log('queries from state:', this.state.queries))
     }
   }
 
