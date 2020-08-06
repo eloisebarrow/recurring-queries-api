@@ -57,7 +57,9 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell>
-          <IconButton disabled onClick={() => props.handleCancelQuery(row.query_id)}>
+          <IconButton 
+            disabled={ props.searchInput === row.user_id ? false : true }
+            onClick={() => props.handleCancelQuery(row.query_id)} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         </TableCell>
@@ -128,8 +130,6 @@ export default function CollapsibleTable(props) {
     // console.log('handleSearchChange:', searchInput )
   }
 
-  // 
-
   return (
     <React.Fragment>
       <Input 
@@ -154,7 +154,11 @@ export default function CollapsibleTable(props) {
           <TableBody>
             { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
                 return (
-                    <Row key={i} row={query} handleCancelQuery={props.handleCancelQuery} />
+                    <Row 
+                      key={i} 
+                      row={query} 
+                      handleCancelQuery={props.handleCancelQuery}
+                      searchInput={searchInput} />
                 )
               })
             }
