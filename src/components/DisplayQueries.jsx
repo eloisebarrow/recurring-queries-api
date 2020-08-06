@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Moment.js
 import moment from 'moment';
@@ -120,10 +120,21 @@ function Row(props) {
 
 export default function CollapsibleTable(props) {
   const classes = searchInputStyles();
+  const [searchInput, setSearchInput] = useState('')
+
+  const handleSearchChange = (event) => {
+    setSearchInput(event.target.value)
+    // console.log('handleSearchChange:', searchInput )
+  }
 
   return (
     <React.Fragment>
-      <Input placeholder="Search results" className={classes.root} />
+      <Input 
+        onChange={(event) => handleSearchChange(event)} 
+        placeholder="Search results" 
+        className={classes.root}
+        name="resultsSearch"
+        value={searchInput} />
       <TableContainer component={Paper} className="query-results">
         <Table aria-label="collapsible table">
           <TableHead>
