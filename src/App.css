@@ -7,6 +7,10 @@
   margin: 24px auto;
 }
 
+.empty-table {
+  text-align: center;
+}
+
 .query-form {
   height: 120px;
 }
