@@ -12,7 +12,6 @@ Run ```npm start``` from the root folder
 
 ## To Do
 
-- add user_id field (either optional input or column in table + search filter)
 - handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 403s indicate invalid host/key submission)
 - add message for form submissions that have no results (empty array returned from API)
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
@@ -24,6 +23,7 @@ Run ```npm start``` from the root folder
 
 - change timestamp formatting from unix
 - add Cancel button to CollapsibleTable
+- add user_id field to enable query deletion
 
 ## Errors
 
