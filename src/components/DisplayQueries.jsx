@@ -58,7 +58,7 @@ function Row(props) {
         </TableCell>
         <TableCell>
           <IconButton 
-            disabled={ props.searchInput === row.user_id ? false : true }
+            disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
             onClick={() => props.handleCancelQuery(row.query_id)} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
@@ -127,7 +127,6 @@ export default function CollapsibleTable(props) {
 
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value)
-    // console.log('handleSearchChange:', searchInput )
   }
 
   return (
