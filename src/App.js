@@ -5,6 +5,7 @@ import { getQueries, getCancelRecurringQueries } from './services/api-helper.js'
 // components
 import QueryForm from './components/QueryForm.jsx';
 import DisplayQueries from './components/DisplayQueries.jsx';
+import NoQueries from './components/NoQueries.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -42,11 +43,19 @@ export default class App extends Component {
     })
   }
 
+  clearCurrentQueries = () => {
+    this.setState({
+      queries: []
+    })
+  }
+
   // on clicking submit button, send host + apiKey from form to the recurring queries API
   // set results to queries array in state
   handleSubmit = async () => {
     const { host, apiKey } = this.state.apiForm;
+    this.clearCurrentQueries();
     const allQueries = await getQueries(host, apiKey);
+    console.log(allQueries)
     if (allQueries.error) {
       this.handleGetQueriesError();
     } else {
@@ -80,6 +89,7 @@ export default class App extends Component {
           queries={this.state.queries}
           handleCancelQuery={this.handleCancelQuery}
         />
+        { this.state.queries.length == 0 ? <NoQueries /> : null }
       </div>
     );
   }

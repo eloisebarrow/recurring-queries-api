@@ -151,8 +151,7 @@ export default function CollapsibleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            { props && props.queries && props.queries.length === 0 ? <p className="empty-table">No queries</p> :
-            props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
+            { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
                 return (
                     <Row 
                       key={i} 
