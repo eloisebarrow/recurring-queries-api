@@ -23,7 +23,7 @@ Run ```npm start``` from the root folder
 ## Completed Tasks
 
 - change timestamp formatting from unix
-- add Cancel button to CollapsibleTable (currently commented out)
+- add Cancel button to CollapsibleTable
 
 ## Errors
 
