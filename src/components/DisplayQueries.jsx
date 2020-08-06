@@ -33,6 +33,7 @@ const searchInputStyles = makeStyles({
   root: {
     '& > *': {
       textAlign: 'center',
+      width: '300px',
     }
   }
 })
@@ -127,13 +128,14 @@ export default function CollapsibleTable(props) {
     // console.log('handleSearchChange:', searchInput )
   }
 
+  // 
+
   return (
     <React.Fragment>
       <Input 
         onChange={(event) => handleSearchChange(event)} 
-        placeholder="Search results" 
+        placeholder="Enter a user ID to cancel a query" 
         className={classes.root}
-        name="resultsSearch"
         value={searchInput} />
       <TableContainer component={Paper} className="query-results">
         <Table aria-label="collapsible table">
@@ -143,7 +145,7 @@ export default function CollapsibleTable(props) {
               <TableCell />
               <TableCell>Host</TableCell>
               <TableCell align="right">Query ID</TableCell>
-              <TableCell>User ID</TableCell>
+              <TableCell align="right">User ID</TableCell>
               <TableCell align="right">Status</TableCell> 
               <TableCell align="right">Submission Timestamp (UTC)</TableCell> 
               <TableCell align="right">Expiration Timestamp (UTC)</TableCell> 
