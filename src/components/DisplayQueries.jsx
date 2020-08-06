@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Moment.js
 import moment from 'moment';
@@ -19,6 +19,7 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import Input from '@material-ui/core/Input';
 
 const useRowStyles = makeStyles({
   root: {
@@ -27,6 +28,15 @@ const useRowStyles = makeStyles({
     },
   },
 });
+
+const searchInputStyles = makeStyles({
+  root: {
+    '& > *': {
+      textAlign: 'center',
+      width: '300px',
+    }
+  }
+})
 
 const convertTs = (ts) => {
   let timestamp = moment.unix(ts).utc();
@@ -47,14 +57,17 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell>
-          {/* <IconButton onClick={() => props.handleCancelQuery(row.query_id)}>
+          <IconButton 
+            disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
+            onClick={() => props.handleCancelQuery(row.query_id)} >
             <DeleteOutlineOutlinedIcon />
-          </IconButton> */}
+          </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
           {row.host}
         </TableCell>
         <TableCell align="right">{row.query_id}</TableCell>
+        <TableCell align="right">{row.user_id}</TableCell>
         <TableCell align="right">{row.status}</TableCell>
         <TableCell align="right">{ convertTs(row.query_submission_ts) }</TableCell>
         <TableCell align="right">{ convertTs(row.expiration_ts) }</TableCell>
@@ -109,29 +122,48 @@ function Row(props) {
 }
 
 export default function CollapsibleTable(props) {
+  const classes = searchInputStyles();
+  const [searchInput, setSearchInput] = useState('')
+
+  const handleSearchChange = (event) => {
+    setSearchInput(event.target.value)
+  }
+
   return (
-    <TableContainer component={Paper} className="query-results">
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell />
-            <TableCell>Host</TableCell>
-            <TableCell align="right">Query ID</TableCell>
-            <TableCell align="right">Status</TableCell> 
-            <TableCell align="right">Submission Timestamp (UTC)</TableCell> 
-            <TableCell align="right">Expiration Timestamp (UTC)</TableCell> 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
-              return (
-                  <Row key={i} row={query} handleCancelQuery={props.handleCancelQuery} />
-              )
-            })
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <React.Fragment>
+      <Input 
+        onChange={(event) => handleSearchChange(event)} 
+        placeholder="Enter a user ID to cancel a query" 
+        className={classes.root}
+        value={searchInput} />
+      <TableContainer component={Paper} className="query-results">
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell />
+              <TableCell>Host</TableCell>
+              <TableCell align="right">Query ID</TableCell>
+              <TableCell align="right">User ID</TableCell>
+              <TableCell align="right">Status</TableCell> 
+              <TableCell align="right">Submission Timestamp (UTC)</TableCell> 
+              <TableCell align="right">Expiration Timestamp (UTC)</TableCell> 
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
+                return (
+                    <Row 
+                      key={i} 
+                      row={query} 
+                      handleCancelQuery={props.handleCancelQuery}
+                      searchInput={searchInput} />
+                )
+              })
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </React.Fragment>
   );
 }
