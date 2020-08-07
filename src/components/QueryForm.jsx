@@ -4,7 +4,7 @@ import '../App.css'
 export default function QueryForm(props) {
     return (
         <div className="query-form">
-            <h4>Enter the domain and API key</h4>
+            <h4>Enter the host and API key</h4>
             <form onSubmit={(e) => {
                 e.preventDefault()
                 props.handleSubmit()
@@ -24,7 +24,7 @@ export default function QueryForm(props) {
                     placeholder="API key" 
                     name="apiKey"
                 />
-                <input type="submit"></input>
+                <input type="submit" className="submit-button"></input>
             </form>
             <p className="error">{props.error}</p>
         </div>
