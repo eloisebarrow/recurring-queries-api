@@ -3,6 +3,17 @@
   color: rgb(106,106,106);
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 50px;
+}
+
+.cb-logo-header {
+  width: 200px;
+  height: 47px;
+}
+
 .query-results {
   max-width: 1200px;
   margin: 24px auto;
