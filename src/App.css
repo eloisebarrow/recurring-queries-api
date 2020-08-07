@@ -10,7 +10,7 @@
 }
 
 .App {
-  font-family: 'Proxima Nova';
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif;
   text-align: center;
   color: rgb(106,106,106);
 }
