@@ -52,10 +52,11 @@ export default class App extends Component {
   // on clicking submit button, send host + apiKey from form to the recurring queries API
   // set results to queries array in state
   handleSubmit = async () => {
-    const { host, apiKey } = this.state.apiForm;
     this.clearCurrentQueries();
+
+    const { host, apiKey } = this.state.apiForm;
     const allQueries = await getQueries(host, apiKey);
-    console.log(allQueries)
+  
     if (allQueries.error) {
       this.handleGetQueriesError();
     } else {
@@ -89,7 +90,7 @@ export default class App extends Component {
           queries={this.state.queries}
           handleCancelQuery={this.handleCancelQuery}
         />
-        { this.state.queries.length == 0 ? <NoQueries /> : null }
+        { this.state.queries.length === 0 ? <NoQueries /> : null }
       </div>
     );
   }

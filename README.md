@@ -12,8 +12,7 @@ Run ```npm start``` from the root folder
 
 ## To Do
 
-- handle API errors - general handling DONE, wip clear table of previous submission results + clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
-- add message for form submissions that have no results (empty array returned from API)
+- handle API errors - general handling DONE, wip clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
 - add CB fonts
 - remove trailing comma from metadata
@@ -24,6 +23,8 @@ Run ```npm start``` from the root folder
 - change timestamp formatting from unix
 - add Cancel button to CollapsibleTable
 - add user_id field to enable query deletion
+- add message for form submissions that have no results (empty array returned from API)
+- clear previous results on submitting form
 
 ## Errors
 
