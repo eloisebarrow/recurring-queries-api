@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from './Modal.jsx';
 
 // Moment.js
 import moment from 'moment';
@@ -164,6 +165,7 @@ export default function CollapsibleTable(props) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Modal />
     </React.Fragment>
   );
 }
