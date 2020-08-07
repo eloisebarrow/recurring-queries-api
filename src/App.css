@@ -3,6 +3,7 @@
   color: rgb(106,106,106);
 }
 
+/************* HEADER ***************/
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -18,17 +19,33 @@
   height: 47px;
 }
 
+/************* QUERY FORM ***************/
 .query-results {
   max-width: 1200px;
   margin: 24px auto;
 }
 
-.empty-table {
-  text-align: center;
-}
-
 .query-form {
   height: 120px;
+}
+
+.query-form input {
+  margin: 0 8px;
+  padding: 8px 16px;
+  border: none;
+  border-bottom: 1px solid rgb(79,79,79);
+}
+
+.query-form input:last-child {
+  border: none;
+  background-color: rgb(92,160,248);
+  color: #FFF;
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 64px;
+  padding: 12px 18px;
+  letter-spacing: .2px;
+  border-radius: 3px;
 }
 
 .error {

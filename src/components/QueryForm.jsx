@@ -24,7 +24,7 @@ export default function QueryForm(props) {
                     placeholder="API key" 
                     name="apiKey"
                 />
-                <input type="submit"></input>
+                <input type="submit" className="submit-button"></input>
             </form>
             <p className="error">{props.error}</p>
         </div>
