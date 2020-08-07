@@ -60,7 +60,7 @@ function Row(props) {
         <TableCell>
           <IconButton 
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
-            onClick={() => props.handleCancelQuery(row.query_id)} >
+            onClick={() => props.setIsModalOpen(true)} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         </TableCell>
@@ -125,6 +125,7 @@ function Row(props) {
 export default function CollapsibleTable(props) {
   const classes = searchInputStyles();
   const [searchInput, setSearchInput] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value)
@@ -158,14 +159,27 @@ export default function CollapsibleTable(props) {
                     key={i} 
                     row={query} 
                     handleCancelQuery={props.handleCancelQuery}
-                    searchInput={searchInput} />
+                    searchInput={searchInput}
+                    setIsModalOpen={setIsModalOpen} />
                 )
               })
             }
           </TableBody>
         </Table>
       </TableContainer>
-      <Modal />
+      { isModalOpen ? 
+        <Modal 
+          setIsModalOpen={setIsModalOpen}
+          handleCancelQuery={props.handleCancelQuery} /> 
+        : null}
     </React.Fragment>
   );
 }
+
+// create a modal hook - isModalOpen
+// set to open on clicking trash icon in row
+// conditionally render Modal in CollapsibleTable component when isModalOpen == true
+// pass handleCancelQuery prop to Modal
+// pass setIsModalOpen to Modal
+// add click functionality to delete button in Modal (to handleCancelQuery)
+// add click functionality to cancel button in Modal (to setIsOpenModal to false)
