@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from './Modal.jsx';
 
 // Moment.js
 import moment from 'moment';
@@ -45,8 +46,12 @@ const convertTs = (ts) => {
 
 function Row(props) {
   const { row } = props; // each row exists in props, with all its data
-  const [open, setOpen] = React.useState(false); // expand row to see more data
   const classes = useRowStyles();
+  
+  // HOOKS
+  const [open, setOpen] = React.useState(false); // expand row to see more data
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [queryId, setQueryId] = useState('')
 
   return (
     <React.Fragment>
@@ -59,7 +64,9 @@ function Row(props) {
         <TableCell>
           <IconButton 
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
-            onClick={() => props.handleCancelQuery(row.query_id)} >
+            onClick={() => {
+              setQueryId(row.query_id);
+              setIsModalOpen(true)}} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         </TableCell>
@@ -117,6 +124,12 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      { isModalOpen ? 
+        <Modal 
+          setIsModalOpen={setIsModalOpen}
+          handleCancelQuery={props.handleCancelQuery}
+          queryId={queryId} /> 
+        : null}
     </React.Fragment>
   );
 }
@@ -156,8 +169,8 @@ export default function CollapsibleTable(props) {
                   <Row 
                     key={i} 
                     row={query} 
-                    handleCancelQuery={props.handleCancelQuery}
-                    searchInput={searchInput} />
+                    searchInput={searchInput}
+                    handleCancelQuery={props.handleCancelQuery} />
                 )
               })
             }
