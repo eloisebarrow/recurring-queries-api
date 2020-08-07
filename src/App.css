@@ -70,3 +70,98 @@
 .error {
   color: rgb(255,0,0);
 }
+
+/************* MODAL *************/
+/* styles from delete query modal here: https://chartbeat.com/advanced-queries/saved/ */
+.modal-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background: rgba(38,73,92,.8);
+  top: 0;
+  left: 0;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(50% - 120px);
+  left: calc(50% - 240px);
+  width: 480px;
+  background: #FFF;
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,.28);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.modal header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  height: 50px;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.modal h2 {
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.modal section {
+  padding-bottom: 32px;
+  background: #F4F4F4;
+}
+
+.delete-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.delete-text p {
+  margin: 0;
+}
+
+.modal button {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .25px;
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 110px;
+  line-height: 32px;
+  text-align: center;
+  opacity: 1;
+  display: inline-block;
+  height: 40px;
+  padding: 4px 40px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 1px 0 rgba(0,0,0,.2);
+  transition: box-shadow .1s ease;
+}
+
+.action-cancel {
+  color: #46A0FF;
+  background: #FFF;
+  margin-right: 12px;
+}
+
+.action-delete {
+  color: #FFF;
+  background: #E35F6B;
+}
