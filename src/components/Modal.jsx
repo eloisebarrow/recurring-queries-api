@@ -2,6 +2,7 @@ import React from 'react'
 import '../App.css'
 
 export default function Modal(props) {
+    console.log('props from Modal:', props)
     return (
         <div className="modal-container">
             <div className="modal">
@@ -18,8 +19,7 @@ export default function Modal(props) {
                         onClick={() => props.setIsModalOpen(false)}>Cancel</button>
                     <button 
                         className="action-delete"
-                        onClick={() => console.log('queryId from Modal:', props.queryId)}
-                        >Delete</button>
+                        onClick={() => props.handleCancelQuery(props.queryId)}>Delete</button>
                 </section>
             </div>
         </div>

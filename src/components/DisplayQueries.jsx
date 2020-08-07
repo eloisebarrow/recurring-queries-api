@@ -46,8 +46,12 @@ const convertTs = (ts) => {
 
 function Row(props) {
   const { row } = props; // each row exists in props, with all its data
-  const [open, setOpen] = React.useState(false); // expand row to see more data
   const classes = useRowStyles();
+  
+  // HOOKS
+  const [open, setOpen] = React.useState(false); // expand row to see more data
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [queryId, setQueryId] = useState('')
 
   return (
     <React.Fragment>
@@ -60,8 +64,9 @@ function Row(props) {
         <TableCell>
           <IconButton 
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
-            setQueryId={props.setQueryId(row.query_id)}
-            onClick={() => props.setIsModalOpen(true)} >
+            onClick={() => {
+              setQueryId(row.query_id);
+              setIsModalOpen(true)}} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         </TableCell>
@@ -119,6 +124,12 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      { isModalOpen ? 
+        <Modal 
+          setIsModalOpen={setIsModalOpen}
+          handleCancelQuery={props.handleCancelQuery}
+          queryId={queryId} /> 
+        : null}
     </React.Fragment>
   );
 }
@@ -126,8 +137,6 @@ function Row(props) {
 export default function CollapsibleTable(props) {
   const classes = searchInputStyles();
   const [searchInput, setSearchInput] = useState('')
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [queryId, setQueryId] = useState('')
 
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value)
@@ -161,20 +170,13 @@ export default function CollapsibleTable(props) {
                     key={i} 
                     row={query} 
                     searchInput={searchInput}
-                    setIsModalOpen={setIsModalOpen}
-                    setQueryId={setQueryId} />
+                    handleCancelQuery={props.handleCancelQuery} />
                 )
               })
             }
           </TableBody>
         </Table>
       </TableContainer>
-      { isModalOpen ? 
-        <Modal 
-          setIsModalOpen={setIsModalOpen}
-          handleCancelQuery={props.handleCancelQuery}
-          queryId={queryId} /> 
-        : null}
     </React.Fragment>
   );
 }

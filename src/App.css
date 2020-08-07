@@ -81,6 +81,7 @@
   background: rgba(38,73,92,.8);
   top: 0;
   left: 0;
+  overflow: hidden;
 }
 
 .modal {

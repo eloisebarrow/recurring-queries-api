@@ -46,3 +46,9 @@ Solution: Had to convert the value to a string.
 ```Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://fb.me/react-strict-mode-find-node```
 
 Solution: TBD
+
+- On clicking trash icon to delete a query, this error is thrown:
+
+```Warning: validateDOMNesting(...): <div> cannot appear as a child of <tbody>.```
+
+Solution: TBD
