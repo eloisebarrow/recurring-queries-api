@@ -3,6 +3,7 @@ import './App.css';
 import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
 // components
+import Header from './components/Header.jsx';
 import QueryForm from './components/QueryForm.jsx';
 import DisplayQueries from './components/DisplayQueries.jsx';
 import NoQueries from './components/NoQueries.jsx';
@@ -78,8 +79,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Recurring Queries</h1>
-        <h3>Manage your recurring queries below</h3>
+        <Header />
         <QueryForm
           handleSubmit={this.handleSubmit}  
           handleApiFormChange={this.handleApiFormChange}
