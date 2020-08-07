@@ -8,15 +8,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 50px;
+  padding: 8px 50px;
   background-color: rgb(250,250,250);
   border-bottom: 1px solid rgb(224,224,224);
   color: rgb(79,79,79);
 }
 
+.headline {
+  font-size: 20px;
+}
+
 .cb-logo-header {
-  width: 200px;
-  height: 47px;
+  width: 150px;
+  height: 35px;
 }
 
 /************* QUERY FORM ***************/
