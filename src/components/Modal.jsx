@@ -12,7 +12,7 @@ export default function Modal(props) {
                 <section>
                     <section className="delete-text">
                         <p>You're about to delete this query.</p>
-                        <p>Are you sure you would like to do this?</p>
+                        <p>Are you sure you would like to proceed?</p>
                     </section>
                     <button 
                         className="action-cancel"
