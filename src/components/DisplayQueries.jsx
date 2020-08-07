@@ -158,7 +158,6 @@ export default function CollapsibleTable(props) {
                   <Row 
                     key={i} 
                     row={query} 
-                    handleCancelQuery={props.handleCancelQuery}
                     searchInput={searchInput}
                     setIsModalOpen={setIsModalOpen} />
                 )
@@ -175,11 +174,3 @@ export default function CollapsibleTable(props) {
     </React.Fragment>
   );
 }
-
-// create a modal hook - isModalOpen
-// set to open on clicking trash icon in row
-// conditionally render Modal in CollapsibleTable component when isModalOpen == true
-// pass handleCancelQuery prop to Modal
-// pass setIsModalOpen to Modal
-// add click functionality to delete button in Modal (to handleCancelQuery)
-// add click functionality to cancel button in Modal (to setIsOpenModal to false)

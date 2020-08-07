@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 
-export default function Modal() {
+export default function Modal(props) {
     return (
         <div className="modal-container">
             <div className="modal">
@@ -13,8 +13,13 @@ export default function Modal() {
                         <p>You're about to delete this query.</p>
                         <p>Are you sure you would like to do this?</p>
                     </section>
-                    <button className="action-cancel">Cancel</button>
-                    <button className="action-delete">Delete</button>
+                    <button 
+                        className="action-cancel"
+                        onClick={() => props.setIsModalOpen(false)}>Cancel</button>
+                    <button 
+                        className="action-delete"
+                        onClick={() => console.log('delete clicked')}
+                        >Delete</button>
                 </section>
             </div>
         </div>
