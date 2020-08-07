@@ -4,7 +4,7 @@ import '../App.css'
 export default function Header() {
     return (
         <div className="header-container">
-            <h2 className="headline">Manage recurring queries</h2>
+            <h5 className="headline">Manage recurring queries</h5>
             <a 
               href="https://chartbeat.com/publishing/settings/api-keys/" 
               target="_blank" 
