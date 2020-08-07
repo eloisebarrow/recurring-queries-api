@@ -60,6 +60,7 @@ function Row(props) {
         <TableCell>
           <IconButton 
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
+            setQueryId={props.setQueryId(row.query_id)}
             onClick={() => props.setIsModalOpen(true)} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
@@ -126,6 +127,7 @@ export default function CollapsibleTable(props) {
   const classes = searchInputStyles();
   const [searchInput, setSearchInput] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [queryId, setQueryId] = useState('')
 
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value)
@@ -159,7 +161,8 @@ export default function CollapsibleTable(props) {
                     key={i} 
                     row={query} 
                     searchInput={searchInput}
-                    setIsModalOpen={setIsModalOpen} />
+                    setIsModalOpen={setIsModalOpen}
+                    setQueryId={setQueryId} />
                 )
               })
             }
@@ -169,7 +172,8 @@ export default function CollapsibleTable(props) {
       { isModalOpen ? 
         <Modal 
           setIsModalOpen={setIsModalOpen}
-          handleCancelQuery={props.handleCancelQuery} /> 
+          handleCancelQuery={props.handleCancelQuery}
+          queryId={queryId} /> 
         : null}
     </React.Fragment>
   );

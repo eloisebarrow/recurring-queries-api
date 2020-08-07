@@ -18,7 +18,7 @@ export default function Modal(props) {
                         onClick={() => props.setIsModalOpen(false)}>Cancel</button>
                     <button 
                         className="action-delete"
-                        onClick={() => console.log('delete clicked')}
+                        onClick={() => console.log('queryId from Modal:', props.queryId)}
                         >Delete</button>
                 </section>
             </div>
