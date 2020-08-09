@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal.jsx';
+import LoadingSpinner from './LoadingSpinner.jsx';
 
 // Moment.js
 import moment from 'moment';
@@ -150,7 +151,7 @@ export default function CollapsibleTable(props) {
         className={classes.root}
         value={searchInput} />
 
-      { props.apiListLoading ? <h4>Results loading...</h4> : 
+      { props.apiListLoading ? <LoadingSpinner /> : 
         <TableContainer component={Paper} className="query-results">
           <Table aria-label="collapsible table">
             <TableHead>

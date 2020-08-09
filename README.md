@@ -6,6 +6,11 @@
 - axios
 - moment.js
 
+## Styles
+
+- Material UI
+- react-loader-spinner
+
 ### To run
 
 Run ```npm start``` from the root folder
