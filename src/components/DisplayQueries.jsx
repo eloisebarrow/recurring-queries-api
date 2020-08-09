@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal.jsx';
+import LoadingSpinner from './LoadingSpinner.jsx';
 
 // Moment.js
 import moment from 'moment';
@@ -149,34 +150,37 @@ export default function CollapsibleTable(props) {
         placeholder="Enter a user ID to cancel a query" 
         className={classes.root}
         value={searchInput} />
-      <TableContainer component={Paper} className="query-results">
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell />
-              <TableCell>Host</TableCell>
-              <TableCell align="right">Query ID</TableCell>
-              <TableCell align="right">User ID</TableCell>
-              <TableCell align="right">Status</TableCell> 
-              <TableCell align="right">Submission Timestamp (UTC)</TableCell> 
-              <TableCell align="right">Expiration Timestamp (UTC)</TableCell> 
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
-                return (
-                  <Row 
-                    key={i} 
-                    row={query} 
-                    searchInput={searchInput}
-                    handleCancelQuery={props.handleCancelQuery} />
-                )
-              })
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+      { props.apiListLoading ? <LoadingSpinner /> : 
+        <TableContainer component={Paper} className="query-results">
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell />
+                <TableCell>Host</TableCell>
+                <TableCell align="right">Query ID</TableCell>
+                <TableCell align="right">User ID</TableCell>
+                <TableCell align="right">Status</TableCell> 
+                <TableCell align="right">Submission Timestamp (UTC)</TableCell> 
+                <TableCell align="right">Expiration Timestamp (UTC)</TableCell> 
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
+                  return (
+                    <Row 
+                      key={i} 
+                      row={query} 
+                      searchInput={searchInput}
+                      handleCancelQuery={props.handleCancelQuery} />
+                  )
+                })
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      }
     </React.Fragment>
   );
 }
