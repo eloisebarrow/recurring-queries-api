@@ -51,13 +51,16 @@ export default class App extends Component {
     })
   }
 
-  // on clicking submit button, send host + apiKey from form to the recurring queries API
+  // on clicking submit button, do the following:
+  // clear queries array
+  // set Loading to true
+  // send host + apiKey from form to the recurring queries API
   // set results to queries array in state
   handleSubmit = async () => {
     this.clearCurrentQueries();
-    
+
     const { host, apiKey } = this.state.apiForm;
-    this.setState( {apiListLoading: true }, async () => {
+    this.setState( { apiListLoading: true }, async () => {
       const allQueries = await getQueries(host, apiKey);
       this.setState({ 
         apiListLoading: false,
@@ -65,7 +68,6 @@ export default class App extends Component {
       })
       allQueries.error ? this.handleGetQueriesError() : this.clearError()
     })
-    
   }
 
   handleCancelQuery = async (queryId) => {
