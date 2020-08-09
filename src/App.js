@@ -17,6 +17,7 @@ export default class App extends Component {
         host: '',
         apiKey: ''
       },
+      apiListLoading: false,
       error: ''
     }
   }
@@ -54,18 +55,17 @@ export default class App extends Component {
   // set results to queries array in state
   handleSubmit = async () => {
     this.clearCurrentQueries();
-
+    
     const { host, apiKey } = this.state.apiForm;
-    const allQueries = await getQueries(host, apiKey);
-  
-    if (allQueries.error) {
-      this.handleGetQueriesError();
-    } else {
-      this.clearError();
-      this.setState({
+    this.setState( {apiListLoading: true }, async () => {
+      const allQueries = await getQueries(host, apiKey);
+      this.setState({ 
+        apiListLoading: false,
         queries: allQueries
       })
-    }
+      allQueries.error ? this.handleGetQueriesError() : this.clearError()
+    })
+    
   }
 
   handleCancelQuery = async (queryId) => {
@@ -89,8 +89,9 @@ export default class App extends Component {
         <DisplayQueries
           queries={this.state.queries}
           handleCancelQuery={this.handleCancelQuery}
+          apiListLoading={this.state.apiListLoading}
         />
-        { this.state.queries.length === 0 ? <NoQueries /> : null }
+        { (this.state.queries.length === 0) && (!this.state.apiListLoading) ? <NoQueries /> : null }
       </div>
     );
   }
