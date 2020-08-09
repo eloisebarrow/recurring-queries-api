@@ -25,14 +25,14 @@ Run ```npm start``` from the root folder
 
 ### Completed Tasks
 
-- change timestamp formatting from unix
-- add Cancel button to CollapsibleTable
-- add user_id field to enable query deletion
-- add message for form submissions that have no results (empty array returned from API)
-- clear previous results on submitting form
-- modal to confirm cancellation of query
-- add CB fonts
-- add loading symbol after form is submitted, before results load
+:white_check_mark: change timestamp formatting from unix
+:white_check_mark: add Cancel button to CollapsibleTable
+:white_check_mark: add user_id field to enable query deletion
+:white_check_mark: add message for form submissions that have no results (empty array returned from API)
+:white_check_mark: clear previous results on submitting form
+:white_check_mark: modal to confirm cancellation of query
+:white_check_mark: add CB fonts
+:white_check_mark: add loading symbol after form is submitted, before results load
 
 ### Errors
 
