@@ -17,7 +17,7 @@ Run ```npm start``` from the root folder
 
 ## To Do
 
-- add loading symbol after form is submitted, before results load
+- *refactor logic for NoQueries component to display on no results
 - handle API errors - general handling DONE, wip clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
 - remove trailing comma from metadata
@@ -32,6 +32,7 @@ Run ```npm start``` from the root folder
 - clear previous results on submitting form
 - modal to confirm cancellation of query
 - add CB fonts
+- add loading symbol after form is submitted, before results load
 
 ## Errors
 
