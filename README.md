@@ -6,7 +6,7 @@
 - axios
 - moment.js
 
-## Styles
+### Styles
 
 - Material UI
 - react-loader-spinner
@@ -15,7 +15,7 @@
 
 Run ```npm start``` from the root folder
 
-## To Do
+### To Do
 
 - *refactor logic for NoQueries component to display on no results
 - handle API errors - general handling DONE, wip clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
@@ -23,7 +23,7 @@ Run ```npm start``` from the root folder
 - remove trailing comma from metadata
 - determine secure way to submit API key
 
-## Completed Tasks
+### Completed Tasks
 
 - change timestamp formatting from unix
 - add Cancel button to CollapsibleTable
@@ -34,7 +34,7 @@ Run ```npm start``` from the root folder
 - add CB fonts
 - add loading symbol after form is submitted, before results load
 
-## Errors
+### Errors
 
 - While refactoring CollapsibleTable component, clicking to expand the 'History'/'Additional Metadata' section displayed a blank screen and threw:
 
