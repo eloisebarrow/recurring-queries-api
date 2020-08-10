@@ -29,6 +29,9 @@ const useRowStyles = makeStyles({
       borderBottom: 'unset',
     },
   },
+  enabledButton: {
+    color: '#E35F6B',
+  },
 });
 
 const searchInputStyles = makeStyles({
@@ -65,6 +68,7 @@ function Row(props) {
         <TableCell>
           <IconButton 
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
+            className={  props.searchInput === row.user_id ? classes.enabledButton : null }
             onClick={() => {
               setQueryId(row.query_id);
               setIsModalOpen(true)}} >
