@@ -17,11 +17,11 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
-- *refactor logic for NoQueries component to display on no results
 - better highlight rows with user ID typed in
 - clear search bar when form is resubmitted (? not fully committed to this)
 - handle API errors - general handling DONE, wip clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
+- refactor post-cancel behavior to re-render remaining queries
 - remove trailing comma from metadata
 - determine secure way to submit API key
 
@@ -35,6 +35,7 @@ Run ```npm start``` from the root folder
 :white_check_mark: modal to confirm cancellation of query <br/>
 :white_check_mark: add CB fonts <br/>
 :white_check_mark: add loading symbol after form is submitted, before results load <br/>
+:white_check_mark: refactor logic for NoQueries component to display on no results <br/>
 
 ### Errors
 

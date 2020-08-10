@@ -77,7 +77,7 @@
   color: rgb(255,0,0);
 }
 
-/************* MODAL *************/
+/************* CANCEL QUERIES MODAL *************/
 /* styles from delete query modal here: https://chartbeat.com/advanced-queries/saved/ */
 .modal-container {
   position: absolute;
@@ -171,4 +171,9 @@
 .action-delete {
   color: #FFF;
   background: #E35F6B;
+}
+
+/************ NO QUERIES ***************/
+.no-queries-container p {
+  font-weight: 800;
 }
