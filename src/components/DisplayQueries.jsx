@@ -29,6 +29,9 @@ const useRowStyles = makeStyles({
       borderBottom: 'unset',
     },
   },
+  deleteRow: {
+    backgroundColor: 'rgb(250,250,250)',
+  },
   enabledButton: {
     color: '#E35F6B',
   },
