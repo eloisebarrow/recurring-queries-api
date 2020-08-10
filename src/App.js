@@ -93,9 +93,10 @@ export default class App extends Component {
           handleCancelQuery={this.handleCancelQuery}
           apiListLoading={this.state.apiListLoading}
         />
-        { (this.state.queries.length === 0) && (!this.state.apiListLoading) ? <NoQueries /> : null }
+        { this.state.queries.length === 0 ? <NoQueries /> : null }
       </div>
     );
   }
 }
 
+// && (!this.state.apiListLoading)
