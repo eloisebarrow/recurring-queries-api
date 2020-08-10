@@ -15,7 +15,7 @@
   color: rgb(106,106,106);
 }
 
-/************* HEADER ***************/
+/********************************* HEADER ************************************/
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-/************* QUERY FORM ***************/
+/********************************* QUERY FORM *************************************/
 .query-results {
   max-width: 1200px;
   margin: 24px auto;
@@ -77,7 +77,7 @@
   color: rgb(255,0,0);
 }
 
-/************* CANCEL QUERIES MODAL *************/
+/************************ CANCEL QUERIES MODAL **********************************/
 /* styles from delete query modal here: https://chartbeat.com/advanced-queries/saved/ */
 .modal-container {
   position: absolute;
@@ -173,7 +173,7 @@
   background: #E35F6B;
 }
 
-/************ NO QUERIES ***************/
+/***************************** NO QUERIES *********************************/
 .no-queries-container p {
   font-weight: 800;
 }
