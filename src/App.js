@@ -33,9 +33,9 @@ export default class App extends Component {
     }))
   }
 
-  handleGetQueriesError = () => {
+  handleGetQueriesError = (errorMessage) => {
     this.setState({
-      error: "Uh oh... you may have a typo in your host or API key. Try again."
+      error: errorMessage
     })
   }
 
@@ -66,7 +66,7 @@ export default class App extends Component {
         apiListLoading: false,
         queries: allQueries
       })
-      allQueries.error ? this.handleGetQueriesError() : this.clearError()
+      allQueries.error ? this.handleGetQueriesError(allQueries.error) : this.clearError()
     })
   }
 
