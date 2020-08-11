@@ -109,16 +109,32 @@ function Row(props) {
                         {row.date_range}
                       </TableCell>
                       <TableCell>
-                        { row.metrics.map((metric, i) => { return `${metric},` }) }
+                        { row.metrics.map((metric) => { 
+                          if (metric === row.metrics[row.metrics.length - 1]) {
+                            return `${metric}`
+                          } else {
+                            return `${metric}, ` }
+                          })
+                        }
                       </TableCell>
                       <TableCell align="right">
-                        { row.dimensions ? row.dimensions.map(dimension => { return `${dimension}, ` })
+                        { row.dimensions ? row.dimensions.map(dimension => { 
+                          if (dimension === row.dimensions[row.dimensions.length - 1]) {
+                            return `${dimension}`
+                          } else {
+                            return `${dimension}, ` 
+                          }}
+                          )
                           : 'none' }
                       </TableCell>
                       <TableCell align="right">
                         { Object.keys(row.filters).length > 0 ? 
                             Object.keys(row.filters).map(filterKey => {
-                              return `${filterKey} = ${row.filters[filterKey]}, `
+                              if (filterKey === Object.keys(row.filters)[Object.keys(row.filters).length - 1]) {
+                                return `${filterKey} = ${row.filters[filterKey]}`
+                              } else {
+                                return `${filterKey} = ${row.filters[filterKey]}, `
+                              }
                             })
                           : 'none'
                         }
