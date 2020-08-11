@@ -17,6 +17,8 @@ export default class App extends Component {
         host: '',
         apiKey: ''
       },
+      currentHost: '',
+      currentApiKey: '',
       apiListLoading: false,
       error: ''
     }
@@ -51,6 +53,14 @@ export default class App extends Component {
     })
   }
 
+  clearApiForm = () => {
+    this.setState({
+      apiForm: {
+        host: ''
+      }
+    })
+  }
+
   // on clicking submit button, do the following:
   // clear queries array
   // set Loading to true
@@ -64,15 +74,19 @@ export default class App extends Component {
       const allQueries = await getQueries(host, apiKey);
       this.setState({ 
         apiListLoading: false,
-        queries: allQueries
+        queries: allQueries,
+        currentHost: host,
+        currentApiKey: apiKey
       })
       allQueries.error ? this.handleGetQueriesError(allQueries.error) : this.clearError()
     })
+
+    this.clearApiForm();
   }
 
   handleCancelQuery = async (queryId) => {
-    const { host, apiKey } = this.state.apiForm;
-    await getCancelRecurringQueries(host, apiKey, queryId);
+    const { currentHost, currentApiKey } = this.state.apiForm;
+    await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
     this.setState(prevState => ({
       queries: prevState.queries.queries.filter((query) => query.query_id !== queryId)
     }), () => {console.log('queries after deletion', this.state.queries)})
