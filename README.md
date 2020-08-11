@@ -68,4 +68,6 @@ Solution: TBD
 Current behavior: Modal appears at top of screen regardless of where user is on the page
 Expected behavior: Modal should cover the full screen regardless of where the user is
 
+Solution: Changed position from absolute to fixed
+
 
