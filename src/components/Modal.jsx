@@ -18,7 +18,10 @@ export default function Modal(props) {
                         onClick={() => props.setIsModalOpen(false)}>Cancel</button>
                     <button 
                         className="action-delete"
-                        onClick={() => props.handleCancelQuery(props.currentQueryId)}>Delete</button>
+                        onClick={() => {
+                            props.handleCancelQuery(props.currentQueryId);
+                            props.setIsModalOpen(false)
+                        }}>Delete</button>
                 </section>
             </div>
         </div>
