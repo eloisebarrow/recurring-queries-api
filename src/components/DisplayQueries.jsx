@@ -57,9 +57,7 @@ function Row(props) {
   
   // HOOKS
   const [open, setOpen] = React.useState(false); // expand row to see more data
-  const [isModalOpen, setIsModalOpen] = useState(false); 
-  const [queryId, setQueryId] = useState('')
-
+  
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -71,10 +69,10 @@ function Row(props) {
         <TableCell>
           <IconButton 
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
-            className={  props.searchInput === row.user_id ? classes.enabledButton : null }
+            className={ props.searchInput === row.user_id ? classes.enabledButton : null }
             onClick={() => {
-              setQueryId(row.query_id);
-              setIsModalOpen(true)}} >
+              props.setCurrentQueryId(row.query_id);
+              props.setIsModalOpen(true)}} >
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         </TableCell>
@@ -132,19 +130,17 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
-      { isModalOpen ? 
-        <Modal 
-          setIsModalOpen={setIsModalOpen}
-          handleCancelQuery={props.handleCancelQuery}
-          queryId={queryId} /> 
-        : null}
     </React.Fragment>
   );
 }
 
 export default function CollapsibleTable(props) {
   const classes = searchInputStyles();
+
+  // HOOKS
   const [searchInput, setSearchInput] = useState('')
+  const [currentQueryId, setCurrentQueryId] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value)
@@ -180,7 +176,8 @@ export default function CollapsibleTable(props) {
                       key={i} 
                       row={query} 
                       searchInput={searchInput}
-                      handleCancelQuery={props.handleCancelQuery} />
+                      setCurrentQueryId={setCurrentQueryId}
+                      setIsModalOpen={setIsModalOpen} />
                   )
                 })
               }
@@ -188,6 +185,12 @@ export default function CollapsibleTable(props) {
           </Table>
         </TableContainer>
       }
+      { isModalOpen ? 
+        <Modal 
+          setIsModalOpen={setIsModalOpen}
+          handleCancelQuery={props.handleCancelQuery}
+          currentQueryId={currentQueryId} /> 
+        : null}
     </React.Fragment>
   );
 }
