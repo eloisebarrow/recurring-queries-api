@@ -80,7 +80,7 @@
 /************************ CANCEL QUERIES MODAL **********************************/
 /* styles from delete query modal here: https://chartbeat.com/advanced-queries/saved/ */
 .modal-container {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   z-index: 10;

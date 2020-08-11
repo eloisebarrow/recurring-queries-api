@@ -38,7 +38,7 @@ Run ```npm start``` from the root folder
 :white_check_mark: add loading symbol after form is submitted, before results load <br/>
 :white_check_mark: refactor logic for NoQueries component to display on no results <br/>
 
-### Errors
+### Errors & bugs
 
 - While refactoring CollapsibleTable component, clicking to expand the 'History'/'Additional Metadata' section displayed a blank screen and threw:
 
@@ -58,8 +58,14 @@ Solution: Had to convert the value to a string.
 
 Solution: TBD
 
-- On clicking trash icon to delete a query, this error is thrown:
+- On clicking trash icon to delete a query, function runs but this error is thrown:
 
 ```Warning: validateDOMNesting(...): <div> cannot appear as a child of <tbody>.```
 
 Solution: TBD
+
+- Fix Modal placement 
+Current behavior: Modal appears at top of screen regardless of where user is on the page
+Expected behavior: Modal should cover the full screen regardless of where the user is
+
+
