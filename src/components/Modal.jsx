@@ -10,7 +10,7 @@ export default function Modal(props) {
                 </header>
                 <section>
                     <section className="delete-text">
-                        <p>You're about to delete this query.</p>
+                        <p>You're about to delete query ID {props.currentQueryId}.</p>
                         <p>Are you sure you would like to proceed?</p>
                     </section>
                     <button 
