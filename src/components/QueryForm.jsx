@@ -6,8 +6,7 @@ export default function QueryForm(props) {
         <div className="query-form">
             <h4>Enter the host and API key</h4>
             <form onSubmit={(e) => {
-                e.preventDefault()
-                props.handleSubmit()
+                props.handleSubmit(e)
 
             }}>
                 <input 
