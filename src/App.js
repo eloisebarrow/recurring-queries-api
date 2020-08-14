@@ -17,8 +17,8 @@ export default class App extends Component {
         host: '',
         apiKey: ''
       },
-      currentHost: '',
-      currentApiKey: '',
+      // currentHost: '',
+      // currentApiKey: '',
       apiListLoading: false,
       error: ''
     }
@@ -56,7 +56,8 @@ export default class App extends Component {
   clearApiForm = () => {
     this.setState({
       apiForm: {
-        host: ''
+        host: '',
+        apikey: ''
       }
     })
   }
@@ -75,13 +76,13 @@ export default class App extends Component {
       this.setState({ 
         apiListLoading: false,
         queries: allQueries,
-        currentHost: host,
-        currentApiKey: apiKey
+        // currentHost: host,
+        // currentApiKey: apiKey
       })
       allQueries.error ? this.handleGetQueriesError(allQueries.error) : this.clearError()
     })
 
-    this.clearApiForm();
+    // this.clearApiForm();
   }
 
   handleCancelQuery = async (queryId) => {
