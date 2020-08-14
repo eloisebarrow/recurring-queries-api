@@ -18,14 +18,15 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
+- add an optional user ID field to query form so you can just see queries associated with a given user ID
+- adjust copy to clipboard function to write to search field on click
 - refactor post-cancel behavior to re-render remaining queries
 - better highlight rows with user ID typed in
-- add button to copy user id & query id in each row
 - add functionality to sort rows by any column
 - handle API errors - general handling DONE, wip clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
 - determine secure way to submit API key
-- clear search bar when form is resubmitted (? not fully committed to this)
+- clear search bar when form is resubmitted
 
 ### Completed Tasks
 
@@ -41,6 +42,7 @@ Run ```npm start``` from the root folder
 :white_check_mark: remove trailing comma from metadata <br/>
 :white_check_mark: refactor logic to set a current host + api key in state to avoid relying on the values from apiForm <br/>
 :white_check_mark: clear form on submit (maybe not API key) <br/>
+:white_check_mark: add button to copy user id <br/>
 
 ### Errors & bugs
 
