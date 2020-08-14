@@ -24,11 +24,8 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import Input from '@material-ui/core/Input';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
-<<<<<<< HEAD
 
 const copy = require('clipboard-copy');
-=======
->>>>>>> 2b7c134fa7f701e79bb3fc81de0f7020a62294e2
 
 const useRowStyles = makeStyles({
   root: {
@@ -97,14 +94,11 @@ function Row(props) {
           {row.user_id}
           <IconButton onClick={() => copyToClipboard(row.user_id)}>
             <AssignmentOutlinedIcon fontSize="small" />
-<<<<<<< HEAD
             { isTextCopied ? 
               <CopiedTextTooltip 
                 isTextCopied={isTextCopied} 
                 setIsTextCopied={setIsTextCopied} /> 
               : null }
-=======
->>>>>>> 2b7c134fa7f701e79bb3fc81de0f7020a62294e2
           </IconButton>
         </TableCell>
         <TableCell align="right">{row.status}</TableCell>
