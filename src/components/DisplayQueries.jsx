@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal.jsx';
-import LoadingSpinner from './LoadingSpinner.jsx';
+import LoadingSpinner from './LoadingSpinner';
+import CopiedTextTooltip from './CopiedTextTooltip'
 
 // Moment.js
 import moment from 'moment';
@@ -22,6 +23,12 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import Input from '@material-ui/core/Input';
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
+<<<<<<< HEAD
+
+const copy = require('clipboard-copy');
+=======
+>>>>>>> 2b7c134fa7f701e79bb3fc81de0f7020a62294e2
 
 const useRowStyles = makeStyles({
   root: {
@@ -56,7 +63,13 @@ function Row(props) {
   const classes = useRowStyles();
   
   // HOOKS
-  const [open, setOpen] = React.useState(false); // expand row to see more data
+  const [open, setOpen] = useState(false); // expand row to see more data
+  const [isTextCopied, setIsTextCopied] = useState(false);
+
+  const copyToClipboard = (e) => {
+    copy(e);
+    setIsTextCopied(true);
+  }
   
   return (
     <React.Fragment>
@@ -80,7 +93,20 @@ function Row(props) {
           {row.host}
         </TableCell>
         <TableCell align="right">{row.query_id}</TableCell>
-        <TableCell align="right">{row.user_id}</TableCell>
+        <TableCell align="right">
+          {row.user_id}
+          <IconButton onClick={() => copyToClipboard(row.user_id)}>
+            <AssignmentOutlinedIcon fontSize="small" />
+<<<<<<< HEAD
+            { isTextCopied ? 
+              <CopiedTextTooltip 
+                isTextCopied={isTextCopied} 
+                setIsTextCopied={setIsTextCopied} /> 
+              : null }
+=======
+>>>>>>> 2b7c134fa7f701e79bb3fc81de0f7020a62294e2
+          </IconButton>
+        </TableCell>
         <TableCell align="right">{row.status}</TableCell>
         <TableCell align="right">{ convertTs(row.query_submission_ts) }</TableCell>
         <TableCell align="right">{ convertTs(row.expiration_ts) }</TableCell>
@@ -197,7 +223,6 @@ export default function CollapsibleTable(props) {
               })
             }
           </TableBody>
-
         </Table>
       </TableContainer>
       { props.apiListLoading ? <LoadingSpinner /> : null}
