@@ -24,6 +24,8 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import Input from '@material-ui/core/Input';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 
+const copy = require('clipboard-copy');
+
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
@@ -91,7 +93,7 @@ function Row(props) {
         <TableCell align="right">{row.query_id}</TableCell>
         <TableCell align="right">
           {row.user_id}
-          <IconButton onClick={() => copyToClipboard(row.user_id)}>
+          <IconButton onClick={() => copy(row.user_id)}>
             <AssignmentOutlinedIcon fontSize="small" />
           </IconButton>
         </TableCell>

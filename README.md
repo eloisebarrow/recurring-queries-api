@@ -5,6 +5,7 @@
 - react.js
 - axios
 - moment.js
+- clipboard-copy
 
 ### Styles
 
