@@ -73,4 +73,6 @@ Expected behavior: Modal should cover the full screen regardless of where the us
 
 Solution: Changed position from absolute to fixed
 
+- Subsequent API calls fail after the first submission with a 403 (since adding function to clear host from form, apiKey is being removed from state as a field)
 
+Solution: Moved state update to handleSubmit function instead of resetting it in a separate function.
