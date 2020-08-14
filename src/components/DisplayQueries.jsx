@@ -22,6 +22,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import Input from '@material-ui/core/Input';
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 
 const useRowStyles = makeStyles({
   root: {
@@ -57,6 +58,10 @@ function Row(props) {
   
   // HOOKS
   const [open, setOpen] = React.useState(false); // expand row to see more data
+
+  const copyToClipboard = (e) => {
+    console.log('text:', e)
+  }
   
   return (
     <React.Fragment>
@@ -80,7 +85,12 @@ function Row(props) {
           {row.host}
         </TableCell>
         <TableCell align="right">{row.query_id}</TableCell>
-        <TableCell align="right">{row.user_id}</TableCell>
+        <TableCell align="right">
+          {row.user_id}
+          <IconButton onClick={() => copyToClipboard(row.user_id)}>
+            <AssignmentOutlinedIcon fontSize="small" />
+          </IconButton>
+        </TableCell>
         <TableCell align="right">{row.status}</TableCell>
         <TableCell align="right">{ convertTs(row.query_submission_ts) }</TableCell>
         <TableCell align="right">{ convertTs(row.expiration_ts) }</TableCell>
