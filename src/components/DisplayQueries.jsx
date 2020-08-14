@@ -60,7 +60,11 @@ function Row(props) {
   const [open, setOpen] = React.useState(false); // expand row to see more data
 
   const copyToClipboard = (e) => {
-    console.log('text:', e)
+    navigator.clipboard.writeText(e).then(
+      clipText => {
+        console.log('clipText:', clipText)
+        e += clipText});
+    console.log('clipboard:', navigator.clipboard)
   }
   
   return (
