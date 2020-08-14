@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal.jsx';
-import LoadingSpinner from './LoadingSpinner.jsx';
+import LoadingSpinner from './LoadingSpinner';
+import CopiedTextTooltip from './CopiedTextTooltip'
 
 // Moment.js
 import moment from 'moment';
@@ -59,14 +60,12 @@ function Row(props) {
   const classes = useRowStyles();
   
   // HOOKS
-  const [open, setOpen] = React.useState(false); // expand row to see more data
+  const [open, setOpen] = useState(false); // expand row to see more data
+  const [isTextCopied, setIsTextCopied] = useState(false);
 
   const copyToClipboard = (e) => {
-    navigator.clipboard.writeText(e).then(
-      clipText => {
-        console.log('clipText:', clipText)
-        e += clipText});
-    console.log('clipboard:', navigator.clipboard)
+    copy(e);
+    setIsTextCopied(true);
   }
   
   return (
@@ -93,8 +92,13 @@ function Row(props) {
         <TableCell align="right">{row.query_id}</TableCell>
         <TableCell align="right">
           {row.user_id}
-          <IconButton onClick={() => copy(row.user_id)}>
+          <IconButton onClick={() => copyToClipboard(row.user_id)}>
             <AssignmentOutlinedIcon fontSize="small" />
+            { isTextCopied ? 
+              <CopiedTextTooltip 
+                isTextCopied={isTextCopied} 
+                setIsTextCopied={setIsTextCopied} /> 
+              : null }
           </IconButton>
         </TableCell>
         <TableCell align="right">{row.status}</TableCell>
@@ -213,7 +217,6 @@ export default function CollapsibleTable(props) {
               })
             }
           </TableBody>
-
         </Table>
       </TableContainer>
       { props.apiListLoading ? <LoadingSpinner /> : null}
