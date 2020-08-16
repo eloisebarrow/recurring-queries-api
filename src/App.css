@@ -77,11 +77,6 @@
   color: rgb(255,0,0);
 }
 
-/*********************** COPIED TEXT TOOLTIP ****************************/
-.copied-text-tooltip-container {
-  border: 1px solid black;
-}
-
 /************************ CANCEL QUERIES MODAL **********************************/
 /* styles from delete query modal here: https://chartbeat.com/advanced-queries/saved/ */
 .modal-container {
