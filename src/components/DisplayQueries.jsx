@@ -24,8 +24,6 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import Input from '@material-ui/core/Input';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 
-const copy = require('clipboard-copy');
-
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
