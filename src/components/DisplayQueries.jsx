@@ -160,12 +160,11 @@ export default function CollapsibleTable(props) {
   const classes = searchInputStyles();
 
   // HOOKS
-  const [searchInput, setSearchInput] = useState('')
   const [currentQueryId, setCurrentQueryId] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const handleSearchChange = (event) => {
-    setSearchInput(event.target.value)
+    props.setSearchInput(event.target.value)
   }
 
   return (
@@ -174,7 +173,7 @@ export default function CollapsibleTable(props) {
         onChange={(event) => handleSearchChange(event)} 
         placeholder="Enter a user ID to cancel a query" 
         className={classes.root}
-        value={searchInput} />
+        value={props.searchInput} />
       
       <TableContainer component={Paper} className="query-results">
         <Table aria-label="collapsible table">
@@ -196,8 +195,8 @@ export default function CollapsibleTable(props) {
                   <Row 
                     key={i} 
                     row={query} 
-                    searchInput={searchInput}
-                    setSearchInput={setSearchInput}
+                    searchInput={props.searchInput}
+                    setSearchInput={props.setSearchInput}
                     setCurrentQueryId={setCurrentQueryId}
                     setIsModalOpen={setIsModalOpen} />
                 )
