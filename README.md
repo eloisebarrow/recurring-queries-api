@@ -18,7 +18,6 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
-- add current host and api key state back to App in order to pass to handleCancelQuery
 - refactor App into functional component
 - add an optional user ID field to query form so you can just see queries associated with a given user ID
 - adjust copy to clipboard function to write to search field on click
@@ -81,3 +80,7 @@ Solution: Changed position from absolute to fixed
 - Subsequent API calls fail after the first submission with a 403 (since adding function to clear host from form, apiKey is being removed from state as a field)
 
 Solution: Moved state update to handleSubmit function instead of resetting it in a separate function.
+
+- handleCancelQuery is failing with a 400 after removal of current host & api key from state
+
+Solution: add currentHost and apiKey back to state and pass to handleCancelQuery
