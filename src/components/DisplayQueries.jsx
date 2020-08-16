@@ -68,7 +68,7 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell>
-          <IconButton 
+          <IconButton // trash icon
             disabled={ props.searchInput === row.user_id ? false : true } // disable cancel button unless user types in row's user ID
             className={ props.searchInput === row.user_id ? classes.enabledButton : null }
             onClick={() => {
@@ -83,7 +83,7 @@ function Row(props) {
         <TableCell align="right">{row.query_id}</TableCell>
         <TableCell align="right">
           {row.user_id}
-          <IconButton onClick={() => props.setSearchInput(row.user_id)}>
+          <IconButton onClick={() => props.setSearchInput(row.user_id)}> {/* copy to search bar icon */}
             <AssignmentOutlinedIcon fontSize="small" />
           </IconButton>
         </TableCell>
@@ -191,6 +191,7 @@ export default function CollapsibleTable(props) {
           </TableHead>
           <TableBody>
             { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
+                
                 return (
                   <Row 
                     key={i} 
