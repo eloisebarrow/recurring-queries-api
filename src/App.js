@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
@@ -8,7 +8,7 @@ import QueryForm from './components/QueryForm.jsx';
 import DisplayQueries from './components/DisplayQueries.jsx';
 import NoQueries from './components/NoQueries.jsx';
 
-export default function App {
+export default function App() {
   // HOOKS
   const [queries, setQueries] = useState([])
   const [formHost, setFormHost] = useState('')
@@ -17,32 +17,21 @@ export default function App {
   const [error, setError] = useState('')
 
   // grab values from QueryForm and use them to set state
-  handleApiFormChange = (e) => {
+  const handleApiFormChange = (e) => {
     const { name, value } = e.target;
-    this.setState( prevState => ({
-      apiForm: {
-        ...prevState.apiForm,
-        [name]: value
-      }
-    }))
+    name === 'host' ? setFormHost(value) : setFormApiKey(value)
   }
 
-  handleGetQueriesError = (errorMessage) => {
-    this.setState({
-      error: errorMessage
-    })
+  const handleGetQueriesError = (errorMessage) => {
+    setError(errorMessage)
   }
 
-  clearError = () => {
-    this.setState({
-      error: ''
-    })
+  const clearError = () => {
+    setError('')
   }
 
-  clearCurrentQueries = () => {
-    this.setState({
-      queries: []
-    })
+  const clearCurrentQueries = () => {
+    setQueries([])
   }
 
   // on clicking submit button, do the following:
@@ -50,48 +39,45 @@ export default function App {
   // set Loading to true
   // send host + apiKey from form to the recurring queries API
   // set results to queries array in state
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    this.clearCurrentQueries();
+    clearCurrentQueries();
 
-    const { host, apiKey } = this.state.apiForm;
-    this.setState( { apiListLoading: true }, async () => {
-      const allQueries = await getQueries(host, apiKey);
-      this.setState({ 
-        apiListLoading: false,
-        queries: allQueries,
-        apiForm: {
-          host: '',
-          apiKey: ''
-        }
-      })
-      allQueries.error ? this.handleGetQueriesError(allQueries.error) : this.clearError()
-    })
+    setApiListLoading(true)
+    queryApi(formHost, formApiKey)
   }
 
-  handleCancelQuery = async (queryId) => {
-    const { currentHost, currentApiKey } = this.state.apiForm;
-    await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
-    this.setState(prevState => ({
-      queries: prevState.queries.queries.filter((query) => query.query_id !== queryId)
-    }), () => {console.log('queries after deletion', this.state.queries)})
+  const queryApi = async (host, apiKey) => {
+    const allQueries = await getQueries(host, apiKey)
+    setApiListLoading(false)
+    setQueries(allQueries)
+    setFormHost('')
+    setFormApiKey('')
+
+    allQueries.error ? handleGetQueriesError(allQueries.error) : clearError()
+  }
+
+  const handleCancelQuery = async (queryId) => {
+    await getCancelRecurringQueries(formHost, formApiKey, queryId);
+    setQueries(queries.queries.filter((query) => query.query_id !== queryId))
   }
 
   return (
     <div className="App">
       <Header />
       <QueryForm
-        handleSubmit={this.handleSubmit}  
-        handleApiFormChange={this.handleApiFormChange}
-        apiForm={this.state.apiForm}
-        error={this.state.error}
+        handleSubmit={handleSubmit}  
+        handleApiFormChange={handleApiFormChange}
+        host={formHost}
+        apiKey={formApiKey}
+        error={error}
       />
       <DisplayQueries
-        queries={this.state.queries}
-        handleCancelQuery={this.handleCancelQuery}
-        apiListLoading={this.state.apiListLoading}
+        queries={queries}
+        handleCancelQuery={handleCancelQuery}
+        apiListLoading={apiListLoading}
       />
-      { (this.state.queries && this.state.queries.queries && this.state.queries.queries.length === 0) ? <NoQueries /> : null }
+      { (queries && queries.queries && queries.queries.length === 0) ? <NoQueries /> : null }
     </div>
   );
 }

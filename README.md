@@ -18,6 +18,7 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
+- add current host and api key state back to App in order to pass to handleCancelQuery
 - refactor App into functional component
 - add an optional user ID field to query form so you can just see queries associated with a given user ID
 - adjust copy to clipboard function to write to search field on click
