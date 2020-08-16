@@ -25,7 +25,6 @@ Run ```npm start``` from the root folder
 - handle API errors - general handling DONE, wip clearer error messaging (working logic: 403s indicate invalid host/key submission, 400s indicate "that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)")
 - Determine how to display a query that has been cancelled but persists in the recurring queries list (may be able to use https://dashapi.chartbeat.com/query/v2/combined/list/)
 - determine secure way to submit API key
-- clear search bar when form is resubmitted
 
 ### Completed Tasks
 
@@ -45,6 +44,7 @@ Run ```npm start``` from the root folder
 :white_check_mark: refactor App into functional component <br/>
 :white_check_mark: add error handling for handleCancelQueries function <br/>
 :white_check_mark: adjust copy to clipboard function to write to search field on click <br/>
+:white_check_mark: clear search bar when form is resubmitted <br/>
 
 ### Errors & bugs
 
