@@ -19,7 +19,6 @@ Run ```npm start``` from the root folder
 ### To Do
 
 - add an optional user ID field to query form so you can just see queries associated with a given user ID
-- adjust copy to clipboard function to write to search field on click
 - refactor post-cancel behavior to re-render remaining queries
 - better highlight rows with user ID typed in
 - add functionality to sort rows by any column
@@ -45,6 +44,7 @@ Run ```npm start``` from the root folder
 :white_check_mark: add button to copy user id <br/>
 :white_check_mark: refactor App into functional component <br/>
 :white_check_mark: add error handling for handleCancelQueries function <br/>
+:white_check_mark: adjust copy to clipboard function to write to search field on click <br/>
 
 ### Errors & bugs
 

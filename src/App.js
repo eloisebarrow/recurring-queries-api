@@ -17,6 +17,7 @@ export default function App() {
   const [currentApiKey, setCurrentApiKey] = useState('')
   const [apiListLoading, setApiListLoading] = useState(false)
   const [error, setError] = useState('')
+  const [searchInput, setSearchInput] = useState('')
 
   // grab values from QueryForm and use them to set state
   const handleApiFormChange = (e) => {
@@ -81,6 +82,8 @@ export default function App() {
         queries={queries}
         handleCancelQuery={handleCancelQuery}
         apiListLoading={apiListLoading}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
       />
       { (queries && queries.queries && queries.queries.length === 0) ? <NoQueries /> : null }
     </div>
