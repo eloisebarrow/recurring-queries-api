@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import './App.css';
 import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
@@ -8,21 +8,13 @@ import QueryForm from './components/QueryForm.jsx';
 import DisplayQueries from './components/DisplayQueries.jsx';
 import NoQueries from './components/NoQueries.jsx';
 
-export default class App extends Component {
-  constructor(props) {
-  super(props)
-    this.state = {
-      queries: [],
-      apiForm: {
-        host: '',
-        apiKey: ''
-      },
-      // currentHost: '',
-      // currentApiKey: '',
-      apiListLoading: false,
-      error: ''
-    }
-  }
+export default function App {
+  // HOOKS
+  const [queries, setQueries] = useState([])
+  const [formHost, setFormHost] = useState('')
+  const [formApiKey, setFormApiKey] = useState('')
+  const [apiListLoading, setApiListLoading] = useState(false)
+  const [error, setError] = useState('')
 
   // grab values from QueryForm and use them to set state
   handleApiFormChange = (e) => {
@@ -85,23 +77,21 @@ export default class App extends Component {
     }), () => {console.log('queries after deletion', this.state.queries)})
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <QueryForm
-          handleSubmit={this.handleSubmit}  
-          handleApiFormChange={this.handleApiFormChange}
-          apiForm={this.state.apiForm}
-          error={this.state.error}
-        />
-        <DisplayQueries
-          queries={this.state.queries}
-          handleCancelQuery={this.handleCancelQuery}
-          apiListLoading={this.state.apiListLoading}
-        />
-        { (this.state.queries && this.state.queries.queries && this.state.queries.queries.length === 0) ? <NoQueries /> : null }
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Header />
+      <QueryForm
+        handleSubmit={this.handleSubmit}  
+        handleApiFormChange={this.handleApiFormChange}
+        apiForm={this.state.apiForm}
+        error={this.state.error}
+      />
+      <DisplayQueries
+        queries={this.state.queries}
+        handleCancelQuery={this.handleCancelQuery}
+        apiListLoading={this.state.apiListLoading}
+      />
+      { (this.state.queries && this.state.queries.queries && this.state.queries.queries.length === 0) ? <NoQueries /> : null }
+    </div>
+  );
 }
