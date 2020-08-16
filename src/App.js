@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './App.css';
 import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
-// components
+// COMPONENTS
 import Header from './components/Header.jsx';
 import QueryForm from './components/QueryForm.jsx';
 import DisplayQueries from './components/DisplayQueries.jsx';
@@ -24,7 +24,7 @@ export default function App() {
     name === 'host' ? setFormHost(value) : setFormApiKey(value)
   }
 
-  const handleGetQueriesError = (errorMessage) => {
+  const handleApiErrors = (errorMessage) => {
     setError(errorMessage)
   }
 
@@ -39,6 +39,7 @@ export default function App() {
   // on clicking submit button, do the following:
   // clear queries array
   // set Loading to true
+  // call queryApi function in order to: 
   // send host + apiKey from form to the recurring queries API
   // set results to queries array in state
   const handleSubmit = async (e) => {
@@ -58,12 +59,12 @@ export default function App() {
     setFormHost('')
     setFormApiKey('')
 
-    allQueries.error ? handleGetQueriesError(allQueries.error) : clearError()
+    allQueries.error ? handleApiErrors(allQueries.error) : clearError()
   }
 
   const handleCancelQuery = async (queryId) => {
-    await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
-    setQueries(queries.queries.filter((query) => query.query_id !== queryId))
+    const cancelQueries = await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
+    cancelQueries.error ? handleApiErrors(cancelQueries.error) : setQueries(queries.queries.filter((query) => query.query_id !== queryId))
   }
 
   return (
