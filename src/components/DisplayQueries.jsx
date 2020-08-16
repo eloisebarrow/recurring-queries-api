@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal.jsx';
 import LoadingSpinner from './LoadingSpinner';
-import CopiedTextTooltip from './CopiedTextTooltip'
 
 // Moment.js
 import moment from 'moment';
@@ -61,17 +60,6 @@ function Row(props) {
   
   // HOOKS
   const [open, setOpen] = useState(false); // expand row to see more data
-  const [isTextCopied, setIsTextCopied] = useState(false);
-
-  const copyToClipboard = (e) => {
-    copy(e);
-    setIsTextCopied(true);
-    removeTooltip();
-  }
-
-  const removeTooltip = () => {
-    setTimeout(function() { setIsTextCopied(false) }, 1100)
-  }
   
   return (
     <React.Fragment>
@@ -99,11 +87,6 @@ function Row(props) {
           {row.user_id}
           <IconButton onClick={() => props.setSearchInput(row.user_id)}>
             <AssignmentOutlinedIcon fontSize="small" />
-            { isTextCopied ? 
-              <CopiedTextTooltip 
-                isTextCopied={isTextCopied} 
-                setIsTextCopied={setIsTextCopied} /> 
-              : null }
           </IconButton>
         </TableCell>
         <TableCell align="right">{row.status}</TableCell>
