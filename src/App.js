@@ -13,6 +13,8 @@ export default function App() {
   const [queries, setQueries] = useState([])
   const [formHost, setFormHost] = useState('')
   const [formApiKey, setFormApiKey] = useState('')
+  const [currentHost, setCurrentHost] = useState('')
+  const [currentApiKey, setCurrentApiKey] = useState('')
   const [apiListLoading, setApiListLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -51,6 +53,8 @@ export default function App() {
     const allQueries = await getQueries(host, apiKey)
     setApiListLoading(false)
     setQueries(allQueries)
+    setCurrentHost(host)
+    setCurrentApiKey(apiKey)
     setFormHost('')
     setFormApiKey('')
 
@@ -58,7 +62,7 @@ export default function App() {
   }
 
   const handleCancelQuery = async (queryId) => {
-    await getCancelRecurringQueries(formHost, formApiKey, queryId);
+    await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
     setQueries(queries.queries.filter((query) => query.query_id !== queryId))
   }
 
