@@ -66,6 +66,11 @@ function Row(props) {
   const copyToClipboard = (e) => {
     copy(e);
     setIsTextCopied(true);
+    removeTooltip();
+  }
+
+  const removeTooltip = () => {
+    setTimeout(function() { setIsTextCopied(false) }, 1100)
   }
   
   return (
@@ -92,7 +97,7 @@ function Row(props) {
         <TableCell align="right">{row.query_id}</TableCell>
         <TableCell align="right">
           {row.user_id}
-          <IconButton onClick={() => copyToClipboard(row.user_id)}>
+          <IconButton onClick={() => props.setSearchInput(row.user_id)}>
             <AssignmentOutlinedIcon fontSize="small" />
             { isTextCopied ? 
               <CopiedTextTooltip 
@@ -211,6 +216,7 @@ export default function CollapsibleTable(props) {
                     key={i} 
                     row={query} 
                     searchInput={searchInput}
+                    setSearchInput={setSearchInput}
                     setCurrentQueryId={setCurrentQueryId}
                     setIsModalOpen={setIsModalOpen} />
                 )
