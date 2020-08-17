@@ -8,9 +8,9 @@ const apiCancel = axios.create({
     baseURL: `https://chartbeat.com/query/v2/recurring/cancel`
 })
 
-export const getQueries = async (host, apiKey) => {
+export const getQueries = async (host, apiKey, userId) => {
     try {
-        const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}`)
+        const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}&user_id=${userId}`)
         return resp.data;
     } catch (e) {
         return { error: e.message }
