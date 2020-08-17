@@ -5,7 +5,6 @@
 - react.js
 - axios
 - moment.js
-- clipboard-copy
 
 ### Styles
 
@@ -18,6 +17,7 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
+- refactor getQueries API call to only add queries array (not full object including host)
 - add an optional user ID field to query form so you can just see queries associated with a given user ID
 - refactor post-cancel behavior to re-render remaining queries
 - better highlight rows with user ID typed in
@@ -40,13 +40,13 @@ Run ```npm start``` from the root folder
 :white_check_mark: refactor logic for NoQueries component to display on no results <br/>
 :white_check_mark: remove trailing comma from metadata <br/>
 :white_check_mark: refactor logic to set a current host + api key in state to avoid relying on the values from apiForm <br/>
-:white_check_mark: clear form on submit (maybe not API key) <br/>
+:white_check_mark: clear form on submit <br/>
 :white_check_mark: add button to copy user id <br/>
 :white_check_mark: refactor App into functional component <br/>
 :white_check_mark: add error handling for handleCancelQueries function <br/>
 :white_check_mark: adjust copy to clipboard function to write to search field on click <br/>
 :white_check_mark: clear search bar when form is resubmitted <br/>
-:white_check_mark: focus host field on load <br/>
+:white_check_mark: focus host field on submit <br/>
 
 ### Errors & bugs
 
