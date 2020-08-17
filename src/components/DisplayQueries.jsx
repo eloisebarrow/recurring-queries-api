@@ -206,7 +206,7 @@ export default function CollapsibleTable(props) {
           </TableBody>
         </Table>
       </TableContainer>
-      { props.apiListLoading ? <LoadingSpinner /> : null}
+      { props.apiListLoading ? <LoadingSpinner /> : null }
       { isModalOpen ? 
         <Modal 
           setIsModalOpen={setIsModalOpen}

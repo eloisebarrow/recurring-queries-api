@@ -55,7 +55,7 @@ export default function App() {
     queryApi(formHost, formApiKey)
 
     clearSearchInput();
-    
+
     document.querySelector('.input-host').focus();
   }
 
@@ -72,14 +72,13 @@ export default function App() {
   }
 
   const handleCancelQuery = async (queryId) => {
-    const cancelQueries = await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
+    console.log('queries before cancelling:', queries)
+    await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
     // cancelQueries.error ? handleApiErrors(cancelQueries.error) : 
-    setQueries(queries.queries.filter((query) => query.query_id !== queryId))
+    const newQueries = queries.queries.filter((query) => query.query_id !== queryId)
+    setQueries(newQueries)
+    console.log('queries after cancelling:', queries)
   }
-
-  // useEffect(() => {
-  //   document.querySelector('.input-host').focus();
-  // })
 
   return (
     <div className="App">
