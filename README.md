@@ -87,3 +87,9 @@ Solution: Moved state update to handleSubmit function instead of resetting it in
 - handleCancelQuery is failing with a 400 after removal of current host & api key from state
 
 Solution: add currentHost and apiKey back to state and pass to handleCancelQuery
+
+- Deleting a query throws this error:
+
+```Unhandled Rejection (TypeError): Cannot read property 'error' of undefined```
+
+Solution: TBD

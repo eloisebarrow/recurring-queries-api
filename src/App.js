@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
@@ -55,6 +55,8 @@ export default function App() {
     queryApi(formHost, formApiKey)
 
     clearSearchInput();
+
+    document.querySelector('.input-host').focus();
   }
 
   const queryApi = async (host, apiKey) => {
@@ -70,13 +72,11 @@ export default function App() {
   }
 
   const handleCancelQuery = async (queryId) => {
-    const cancelQueries = await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
-    cancelQueries.error ? handleApiErrors(cancelQueries.error) : setQueries(queries.queries.filter((query) => query.query_id !== queryId))
+    await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
+    // cancelQueries.error ? handleApiErrors(cancelQueries.error) : 
+    const newQueries = queries.queries.filter((query) => query.query_id !== queryId)
+    setQueries(newQueries)
   }
-
-  useEffect(() => {
-    document.querySelector('.input-host').focus();
-  })
 
   return (
     <div className="App">
