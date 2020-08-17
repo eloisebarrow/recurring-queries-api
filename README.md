@@ -17,9 +17,7 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
-- refactor getQueries API call to only add queries array (not full object including host)
 - add an optional user ID field to query form so you can just see queries associated with a given user ID
-- refactor post-cancel behavior to re-render remaining queries
 - better highlight rows with user ID typed in
 - hide rows that don't match user id from search field
 - add functionality to sort rows by any column
@@ -47,6 +45,8 @@ Run ```npm start``` from the root folder
 :white_check_mark: adjust copy to clipboard function to write to search field on click <br/>
 :white_check_mark: clear search bar when form is resubmitted <br/>
 :white_check_mark: focus host field on submit <br/>
+:white_check_mark: refactor getQueries API call to only add queries array (not full object including host) <br/>
+:white_check_mark: refactor post-cancel behavior to re-render remaining queries <br/>
 
 ### Errors & bugs
 
@@ -92,4 +92,4 @@ Solution: add currentHost and apiKey back to state and pass to handleCancelQuery
 
 ```Unhandled Rejection (TypeError): Cannot read property 'error' of undefined```
 
-Solution: TBD
+Solution: TBD (temporarily removed error handling)
