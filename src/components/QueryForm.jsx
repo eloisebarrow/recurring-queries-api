@@ -14,7 +14,8 @@ export default function QueryForm(props) {
                     value={props.host}
                     type="text" 
                     placeholder="Host"
-                    name="host" 
+                    name="host"
+                    className="input-host"
                 />
                 <input 
                     onChange={(e) => props.handleApiFormChange(e)}

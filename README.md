@@ -18,6 +18,7 @@ Run ```npm start``` from the root folder
 
 ### To Do
 
+- focus host field on load
 - add an optional user ID field to query form so you can just see queries associated with a given user ID
 - refactor post-cancel behavior to re-render remaining queries
 - better highlight rows with user ID typed in

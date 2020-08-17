@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
 
@@ -73,6 +73,10 @@ export default function App() {
     const cancelQueries = await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
     cancelQueries.error ? handleApiErrors(cancelQueries.error) : setQueries(queries.queries.filter((query) => query.query_id !== queryId))
   }
+
+  useEffect(() => {
+    document.querySelector('.input-host').focus();
+  })
 
   return (
     <div className="App">
