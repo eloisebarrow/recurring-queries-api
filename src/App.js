@@ -13,6 +13,7 @@ export default function App() {
   const [queries, setQueries] = useState([])
   const [formHost, setFormHost] = useState('')
   const [formApiKey, setFormApiKey] = useState('')
+  const [formUserId, setFormUserId] = useState('')
   const [currentHost, setCurrentHost] = useState('')
   const [currentApiKey, setCurrentApiKey] = useState('')
   const [apiListLoading, setApiListLoading] = useState(false)
@@ -52,21 +53,22 @@ export default function App() {
     clearCurrentQueries();
 
     setApiListLoading(true)
-    queryApi(formHost, formApiKey)
+    queryApi(formHost, formApiKey, formUserId)
 
     clearSearchInput();
 
     document.querySelector('.input-host').focus();
   }
 
-  const queryApi = async (host, apiKey) => {
-    const allQueries = await getQueries(host, apiKey)
+  const queryApi = async (host, apiKey, userId) => {
+    const allQueries = await getQueries(host, apiKey, userId)
     setApiListLoading(false)
     setQueries(allQueries.queries)
     setCurrentHost(host)
     setCurrentApiKey(apiKey)
     setFormHost('')
     setFormApiKey('')
+    setFormUserId('')
 
     allQueries.error ? handleApiErrors(allQueries.error) : clearError()
   }
@@ -86,6 +88,7 @@ export default function App() {
         handleApiFormChange={handleApiFormChange}
         host={formHost}
         apiKey={formApiKey}
+        userId={formUserId}
         error={error}
       />
       <DisplayQueries

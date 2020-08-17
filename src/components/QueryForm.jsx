@@ -24,6 +24,13 @@ export default function QueryForm(props) {
                     placeholder="API key" 
                     name="apiKey"
                 />
+                <input
+                    onChange={(e) => props.handleApiFormChange(e)}
+                    value={props.userId}
+                    type="text"
+                    placeholder="User ID (optional)"
+                    name="userId"
+                />
                 <input type="submit" className="submit-button"></input>
             </form>
             <p className="error">{props.error}</p>
