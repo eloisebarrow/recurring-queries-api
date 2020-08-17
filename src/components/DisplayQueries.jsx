@@ -190,7 +190,7 @@ export default function CollapsibleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            { props && props.queries && props.queries.queries && props.queries.queries.map( (query, i) => {
+            { props.queries && props.queries.map( (query, i) => {
                 
                 return (
                   <Row 

@@ -62,7 +62,7 @@ export default function App() {
   const queryApi = async (host, apiKey) => {
     const allQueries = await getQueries(host, apiKey)
     setApiListLoading(false)
-    setQueries(allQueries)
+    setQueries(allQueries.queries)
     setCurrentHost(host)
     setCurrentApiKey(apiKey)
     setFormHost('')
