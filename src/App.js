@@ -74,7 +74,7 @@ export default function App() {
   const handleCancelQuery = async (queryId) => {
     await getCancelRecurringQueries(currentHost, currentApiKey, queryId);
     // cancelQueries.error ? handleApiErrors(cancelQueries.error) : 
-    const newQueries = queries.queries.filter((query) => query.query_id !== queryId)
+    const newQueries = queries.filter((query) => query.query_id !== queryId)
     setQueries(newQueries)
   }
 
