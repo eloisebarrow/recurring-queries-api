@@ -23,7 +23,19 @@ export default function App() {
   // grab values from QueryForm and use them to set state
   const handleApiFormChange = (e) => {
     const { name, value } = e.target;
-    name === 'host' ? setFormHost(value) : setFormApiKey(value)
+    switch (name) {
+      case 'host': 
+        setFormHost(value)
+        break;
+      case 'apiKey':
+        setFormApiKey(value);
+        break;
+      case 'userId':
+        setFormUserId(value);
+        break;
+      default:
+        setError(value)
+    }
   }
 
   const handleApiErrors = (errorMessage) => {
