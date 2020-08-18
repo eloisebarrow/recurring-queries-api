@@ -8,14 +8,14 @@ const apiCancel = axios.create({
     baseURL: `https://chartbeat.com/query/v2/recurring/cancel`
 })
 
-export const getQueries = async (host, apiKey, userId) => {
-    try {
-        const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}&user_id=${userId}`)
-        return resp.data;
-    } catch (e) {
-        return { error: e.message }
-    }
-}
+// export const getQueries = async (host, apiKey, userId) => {
+//     try {
+//         const resp = await apiList.get(`/?host=${host}&apikey=${apiKey}&user_id=${userId}`)
+//         return resp.data;
+//     } catch (e) {
+//         return { error: e.message }
+//     }
+// }
 
 export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
     try {
@@ -23,4 +23,15 @@ export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
     } catch (e) {
         return { error: e.message }
     }
+}
+
+export const getQueries = async (host, apiKey, userId) => {
+    let queries = await fetch(`https://dashapi.chartbeat.com/query/v2/recurring/list/?apikey=${apiKey}&host=${host}&query_id=${userId}`)
+    .then(response => response.json()
+    .then(data => { return data }))
+    .catch(error => {
+        console.log(error)
+        return { error: error.message }
+    })
+    return queries;
 }
