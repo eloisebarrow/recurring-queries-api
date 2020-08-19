@@ -37,7 +37,7 @@ export default function App() {
         setError(value)
     }
   }
-
+  
   const handleApiErrors = (errorMessage) => {
     let errorPhrase = errorMessage.split(' ')
     let errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
@@ -50,6 +50,9 @@ export default function App() {
         break;
       case 500:
         setError(`${errorMessage}: ${errors[500]}`)
+        break;
+      case 503:
+        setError(`${errorMessage}: ${errors[503]}`)
         break;
       default:
         setError(`${errorMessage}`)

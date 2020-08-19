@@ -26,7 +26,8 @@ export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
 }
 
 export const errors = {
-    400: '400',
-    403: '403',
-    500: '500'
+    400: 'Bad Request – the server cannot or will not process the request due to something perceived to be a client error (e.g. bad syntax).',
+    403: 'Access to the requested resource is forbidden for some reason. Double check your API key & host.',
+    500: "Internal Server Error – something has gone wrong on the web site's server.",
+    503: "Service Unavailable – the server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded."
 }
