@@ -127,7 +127,7 @@ export default function App() {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
       />
-      { (queries && queries.queries && queries.queries.length === 0) ? <NoQueries /> : null }
+      { (queries && queries.length === 0) ? <NoQueries /> : null }
     </div>
   );
 }
