@@ -24,3 +24,9 @@ export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
         return { error: e.message }
     }
 }
+
+export const errors = {
+    400: '400',
+    403: '403',
+    500: '500'
+}

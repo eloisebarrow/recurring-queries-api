@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css';
-import { getQueries, getCancelRecurringQueries } from './services/api-helper.js';
+import { getQueries, getCancelRecurringQueries, errors } from './services/api-helper.js';
 
 // COMPONENTS
 import Header from './components/Header.jsx';
@@ -39,7 +39,21 @@ export default function App() {
   }
 
   const handleApiErrors = (errorMessage) => {
-    setError(errorMessage)
+    let errorPhrase = errorMessage.split(' ')
+    let errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
+    switch (errorCode) {
+      case 400:
+        setError(`${errorMessage}: ${errors[400]}`)
+        break;
+      case 403:
+        setError(`${errorMessage}: ${errors[403]}`)
+        break;
+      case 500:
+        setError(`${errorMessage}: ${errors[500]}`)
+        break;
+      default:
+        setError(`${errorMessage}`)
+    }
   }
 
   const clearError = () => {
