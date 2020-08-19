@@ -71,12 +71,6 @@ export default function App() {
     setSearchInput('')
   }
 
-  // on clicking submit button, do the following:
-  // clear queries array
-  // set Loading to true
-  // call queryApi function in order to: 
-  // send host + apiKey from form to the recurring queries API
-  // set results to queries array in state
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearCurrentQueries();
