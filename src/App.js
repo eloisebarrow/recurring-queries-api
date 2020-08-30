@@ -40,6 +40,7 @@ export default function App() {
   
   const handleApiErrors = (errorMessage) => {
     console.log('error message:', errorMessage)
+    
     let errorPhrase = errorMessage.split(' ')
     
     let errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
