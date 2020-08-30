@@ -1,8 +1,8 @@
 const axios = require('axios');
 // const myApiKey = process.env.REACT_APP_CB_API_KEY;
-const apiList = axios.create({
-    baseURL: `https://dashapi.chartbeat.com/query/v2/recurring/list`
-})
+// const apiList = axios.create({
+//     baseURL: `https://dashapi.chartbeat.com/query/v2/recurring/list`
+// })
 
 const apiCancel = axios.create({
     baseURL: `https://chartbeat.com/query/v2/recurring/cancel`

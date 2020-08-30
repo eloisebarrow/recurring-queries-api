@@ -20,6 +20,19 @@ export default function App() {
   const [error, setError] = useState('')
   const [searchInput, setSearchInput] = useState('')
 
+  // reset state values
+  const clearError = () => {
+    setError('')
+  }
+
+  const clearCurrentQueries = () => {
+    setQueries([])
+  }
+
+  const clearSearchInput = () => {
+    setSearchInput('')
+  }
+
   // grab values from QueryForm and use them to set state
   const handleApiFormChange = (e) => {
     const { name, value } = e.target;
@@ -39,39 +52,32 @@ export default function App() {
   }
   
   const handleApiErrors = (errorMessage) => {
-    console.log('error message:', errorMessage)
-    
-    let errorPhrase = errorMessage.split(' ')
-    
-    let errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
+    let errorCode;
+    let errorPhrase;
+    if (typeof errorMessage == 'string') {
+      errorPhrase = errorMessage.split(' ')
+      errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
+    } else if (typeof errorMessage == 'object') {
+      errorPhrase = errorMessage.message
+      errorCode = errorMessage.code;
+    }
+
     switch (errorCode) {
       case 400:
-        setError(`${errorMessage}: ${errors[400]}`)
+        setError(`${errorPhrase}: ${errors[400]}`)
         break;
       case 403:
-        setError(`${errorMessage}: ${errors[403]}`)
+        setError(`${errorPhrase}: ${errors[403]}`)
         break;
       case 500:
-        setError(`${errorMessage}: ${errors[500]}`)
+        setError(`${errorPhrase}: ${errors[500]}`)
         break;
       case 503:
-        setError(`${errorMessage}: ${errors[503]}`)
+        setError(`${errorPhrase}: ${errors[503]}`)
         break;
       default:
         setError(`${errorMessage}`)
     }
-  }
-
-  const clearError = () => {
-    setError('')
-  }
-
-  const clearCurrentQueries = () => {
-    setQueries([])
-  }
-
-  const clearSearchInput = () => {
-    setSearchInput('')
   }
 
   const handleSubmit = async (e) => {
