@@ -28,13 +28,13 @@ export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
 export const getQueries = async (host, apiKey, userId) => {
     let userIdParam = userId ? `&user_id=${userId}` : ''
     let response = await fetch(`https://dashapi.chartbeat.com/query/v2/recurring/list/?apikey=${apiKey}&host=${host}${userIdParam}`)
-    .then(resp => resp.json())
-    .then(data => { return data })
-    .catch(error => {
-        console.log(error)
-        return { error: error.message }
-    })
-    return response;
+    // .then(resp => resp.json())
+    // .then(data => { return data })
+    // .catch(error => {
+    //     console.log(error)
+    //     return { error: error.message }
+    // })
+    // return response;
 
     // if (response.status < 400) {
     //     let data = await response.json() // the .json() method returns a Promise 
@@ -44,6 +44,19 @@ export const getQueries = async (host, apiKey, userId) => {
     // } else {
     //     return Promise.reject(new Error("Request failed"))
     // }
+    
+    .then(resp => {
+        console.log(resp)
+        if (resp.status < 400) {
+            let data = resp.json()
+            console.log(data)
+            return data;
+        }
+    })
+    .catch(error => {
+        return { error: error.message }
+    })
+    return response;
 }
 
 export const errors = {

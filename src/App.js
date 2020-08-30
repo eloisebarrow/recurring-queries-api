@@ -20,19 +20,6 @@ export default function App() {
   const [error, setError] = useState('')
   const [searchInput, setSearchInput] = useState('')
 
-  // reset state values
-  const clearError = () => {
-    setError('')
-  }
-
-  const clearCurrentQueries = () => {
-    setQueries([])
-  }
-
-  const clearSearchInput = () => {
-    setSearchInput('')
-  }
-
   // grab values from QueryForm and use them to set state
   const handleApiFormChange = (e) => {
     const { name, value } = e.target;
@@ -78,6 +65,18 @@ export default function App() {
       default:
         setError(`${errorMessage}`)
     }
+  }
+
+  const clearError = () => {
+    setError('')
+  }
+
+  const clearCurrentQueries = () => {
+    setQueries([])
+  }
+
+  const clearSearchInput = () => {
+    setSearchInput('')
   }
 
   const handleSubmit = async (e) => {
