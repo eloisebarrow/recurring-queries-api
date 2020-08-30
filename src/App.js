@@ -20,6 +20,19 @@ export default function App() {
   const [error, setError] = useState('')
   const [searchInput, setSearchInput] = useState('')
 
+  // reset state values
+  const clearError = () => {
+    setError('')
+  }
+
+  const clearCurrentQueries = () => {
+    setQueries([])
+  }
+
+  const clearSearchInput = () => {
+    setSearchInput('')
+  }
+
   // grab values from QueryForm and use them to set state
   const handleApiFormChange = (e) => {
     const { name, value } = e.target;
@@ -37,40 +50,8 @@ export default function App() {
         setError(value)
     }
   }
-  
-  const handleApiErrors = (errorMessage) => {
-    let errorPhrase = errorMessage.split(' ')
-    let errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
-    switch (errorCode) {
-      case 400:
-        setError(`${errorMessage}: ${errors[400]}`)
-        break;
-      case 403:
-        setError(`${errorMessage}: ${errors[403]}`)
-        break;
-      case 500:
-        setError(`${errorMessage}: ${errors[500]}`)
-        break;
-      case 503:
-        setError(`${errorMessage}: ${errors[503]}`)
-        break;
-      default:
-        setError(`${errorMessage}`)
-    }
-  }
 
-  const clearError = () => {
-    setError('')
-  }
-
-  const clearCurrentQueries = () => {
-    setQueries([])
-  }
-
-  const clearSearchInput = () => {
-    setSearchInput('')
-  }
-
+  // submit query form
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearCurrentQueries();
@@ -102,7 +83,28 @@ export default function App() {
     const newQueries = queries.filter((query) => query.query_id !== queryId)
     setQueries(newQueries)
   }
-
+  
+  const handleApiErrors = (errorMessage) => {
+    let errorPhrase = errorMessage.split(' ')
+    let errorCode = parseInt(errorPhrase[errorPhrase.length - 1])
+    switch (errorCode) {
+      case 400:
+        setError(`${errorMessage}: ${errors[400]}`)
+        break;
+      case 403:
+        setError(`${errorMessage}: ${errors[403]}`)
+        break;
+      case 500:
+        setError(`${errorMessage}: ${errors[500]}`)
+        break;
+      case 503:
+        setError(`${errorMessage}: ${errors[503]}`)
+        break;
+      default:
+        setError(`${errorMessage}`)
+    }
+  }
+  
   return (
     <div className="App">
       <Header />
