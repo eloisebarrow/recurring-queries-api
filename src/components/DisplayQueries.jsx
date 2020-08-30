@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Modal from './Modal.jsx';
 import LoadingSpinner from './LoadingSpinner';
 
+// Moment.js
+import moment from 'moment';
+
 // Material UI 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -44,6 +47,12 @@ const searchInputStyles = makeStyles({
   }
 })
 
+const convertTs = (ts) => {
+  let timestamp = moment.unix(ts).utc();
+  return timestamp._d.toString();
+}
+
+
 function Row(props) {
   const { row } = props; // each row exists in props, with all its data
   const classes = useRowStyles();
@@ -80,8 +89,8 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell align="right">{row.status}</TableCell>
-        <TableCell align="right">{ new Date(row.query_submission_ts).toString() }</TableCell>
-        <TableCell align="right">{ new Date(row.expiration_ts).toString() }</TableCell>
+        <TableCell align="right">{ convertTs(row.query_submission_ts) }</TableCell>
+        <TableCell align="right">{ convertTs(row.expiration_ts) }</TableCell>
       </TableRow>
       <TableRow>
         <TableCell />

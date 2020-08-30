@@ -4,6 +4,7 @@
 
 - react.js
 - axios
+- moment.js
 
 ### Styles
 
