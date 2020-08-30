@@ -26,15 +26,26 @@ export const getCancelRecurringQueries = async (host, apiKey, queryId) => {
 }
 
 export const getQueries = async (host, apiKey, userId) => {
-    let queries = await fetch(`https://dashapi.chartbeat.com/query/v2/recurring/list/?apikey=${apiKey}&host=${host}&query_id=${userId}`)
-    .then(response => response.json()
-    .then(data => { return data }))
+    let userIdParam = userId ? `&user_id=${userId}` : ''
+    let response = await fetch(`https://dashapi.chartbeat.com/query/v2/recurring/list/?apikey=${apiKey}&host=${host}${userIdParam}`)
+    .then(resp => resp.json())
+    .then(data => { return data })
     .catch(error => {
         console.log(error)
         return { error: error.message }
     })
-    return queries;
+    return response;
+
+    // if (response.status < 400) {
+    //     let data = await response.json() // the .json() method returns a Promise 
+    //     // that resolves to the value from parsing the response body into JSON
+    //     // or rejects if it's not valid JSON
+    //     return data 
+    // } else {
+    //     return Promise.reject(new Error("Request failed"))
+    // }
 }
+
 export const errors = {
     400: 'Bad Request – the server cannot or will not process the request due to something perceived to be a client error (e.g. bad syntax).',
     403: 'Access to the requested resource is forbidden for some reason. Double check your API key & host.',
