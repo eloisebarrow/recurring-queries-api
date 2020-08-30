@@ -52,7 +52,7 @@ export default function App() {
   }
 
   // submit query form
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     clearCurrentQueries();
 
@@ -104,7 +104,7 @@ export default function App() {
         setError(`${errorMessage}`)
     }
   }
-  
+
   return (
     <div className="App">
       <Header />
